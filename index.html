@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html class="dark" lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta name="theme-color" content="#00FF88"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="V DeFi"/>
+<title>V DeFi – Wallet Fiat &amp; Crypto</title>
+<link rel="manifest" href="manifest.json"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Geist:wght@600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+tailwind.config = {
+  darkMode:"class",
+  theme:{extend:{
+    colors:{
+      "electric-emerald":"#00FF88","matte-obsidian":"#0A0A0A","liquid-silver":"#E0E0E0",
+      "muted-gray":"#888888","surface-elevated":"#161616","surface-container":"#201f1f",
+      "surface-container-high":"#2a2a2a","surface-container-highest":"#353534",
+      "surface-container-low":"#1c1b1b","surface-container-lowest":"#0e0e0e",
+      "on-surface":"#e5e2e1","on-primary":"#003919","border-glass":"rgba(255,255,255,0.08)",
+      "error":"#ffb4ab","outline-variant":"#3b4b3d","tertiary-fixed-dim":"#e5c364",
+      "on-background":"#e5e2e1","background":"#131313","surface":"#131313"
+    },
+    fontFamily:{"body-md":["Inter"],"display-lg":["Geist"],"body-sm":["Inter"],"headline-lg":["Geist"],"label-mono":["JetBrains Mono"],"headline-lg-mobile":["Geist"]},
+    fontSize:{
+      "body-md":["16px",{lineHeight:"24px",letterSpacing:"0em",fontWeight:"400"}],
+      "display-lg":["48px",{lineHeight:"56px",letterSpacing:"-0.04em",fontWeight:"700"}],
+      "body-sm":["14px",{lineHeight:"20px",letterSpacing:"0em",fontWeight:"400"}],
+      "headline-lg":["32px",{lineHeight:"40px",letterSpacing:"-0.02em",fontWeight:"600"}],
+      "label-mono":["12px",{lineHeight:"16px",letterSpacing:"0.05em",fontWeight:"500"}],
+      "headline-lg-mobile":["24px",{lineHeight:"32px",letterSpacing:"-0.02em",fontWeight:"600"}]
+    },
+    spacing:{"stack-md":"16px","gutter":"24px","unit":"4px","margin-safe":"32px","stack-lg":"32px","stack-sm":"8px"},
+    borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"}
+  }}
+}
+</script>
+<style>
+*{-webkit-tap-highlight-color:transparent;box-sizing:border-box}
+html,body{margin:0;padding:0;background:#0A0A0A;color:#e5e2e1;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;height:100%}
+.material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;user-select:none}
+.screen{display:none;min-height:100dvh;width:100%;max-width:430px;margin:0 auto;position:relative}
+.screen.active{display:flex;flex-direction:column}
+.glass-card{background:rgba(22,22,22,0.7);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.08)}
+.glass-panel{background:rgba(10,10,10,0.7);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.08)}
+.emerald-glow{box-shadow:0 0 30px rgba(0,255,136,0.15)}
+.emerald-bloom{filter:drop-shadow(0 0 12px rgba(0,255,136,0.4))}
+.metallic-shimmer{background:linear-gradient(110deg,#E0E0E0 30%,#fff 50%,#E0E0E0 70%);background-size:200% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.loading-shimmer{background:linear-gradient(90deg,transparent,rgba(0,255,136,0.4),transparent);background-size:200% 100%;animation:shimmer 1.5s infinite}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.cinematic-vignette{background:radial-gradient(circle,transparent 20%,rgba(0,0,0,0.8) 100%)}
+.slide-in{animation:slideIn 0.28s cubic-bezier(0.25,0.46,0.45,0.94) both}
+.slide-out{animation:slideOut 0.28s cubic-bezier(0.25,0.46,0.45,0.94) both}
+@keyframes slideIn{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:translateX(0)}}
+@keyframes slideOut{from{opacity:1;transform:translateX(0)}to{opacity:0;transform:translateX(-24px)}}
+.fade-in{animation:fadeIn 0.35s ease both}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:50;background:rgba(10,10,10,0.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid rgba(255,255,255,0.08);padding-bottom:env(safe-area-inset-bottom)}
+.top-bar{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:50;background:rgba(10,10,10,0.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,0.08)}
+.scroll-content{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-top:64px;padding-bottom:80px}
+.neon-btn{background:#00FF88;color:#003919;font-family:'Geist',sans-serif;font-weight:700;border-radius:12px;transition:all 0.2s;cursor:pointer;border:none}
+.neon-btn:active{transform:scale(0.97);box-shadow:0 0 24px rgba(0,255,136,0.25)}
+.neon-btn:hover{box-shadow:0 0 24px rgba(0,255,136,0.2)}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;transition:all 0.2s;padding:8px 12px;border:none;background:none}
+.nav-item span.label{font-family:'JetBrains Mono',monospace;font-size:12px;line-height:16px}
+.nav-item.active{color:#00FF88;transform:scale(1.1)}
+.nav-item:not(.active){color:#888888}
+.nav-item:not(.active):hover{color:#E0E0E0}
+.action-btn{display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;border:none;background:none}
+.action-btn:active .action-icon{transform:scale(0.92)}
+.action-icon{width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;transition:all 0.2s;border:1px solid rgba(255,255,255,0.08);background:#2a2a2a}
+.action-icon.primary{background:#00FF88;border:none;box-shadow:0 0 20px rgba(0,255,136,0.2)}
+.onboarding-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:all 0.3s}
+.onboarding-dot.active{width:24px;border-radius:4px;background:#00FF88}
+input[type=number]{-moz-appearance:textfield}
+input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none}
+::-webkit-scrollbar{display:none}
+</style>
+</head>
+<body class="bg-matte-obsidian">
+
+<!-- ═══════════════════════════════════════════
+     SPLASH SCREEN
+═══════════════════════════════════════════ -->
+<div id="screen-splash" class="screen active" style="background:#0A0A0A">
+  <div class="absolute inset-0 cinematic-vignette pointer-events-none"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 opacity-10 pointer-events-none">
+    <div class="w-full h-full" style="background:#00FF88;filter:blur(120px);border-radius:50%"></div>
+  </div>
+  <div class="flex flex-col items-center justify-center flex-1 relative z-10">
+    <div class="relative p-8 rounded-full emerald-glow">
+      <h1 style="font-family:'Geist',sans-serif;font-size:32px;font-weight:700;color:#00FF88;letter-spacing:-0.04em">V DeFi</h1>
+    </div>
+    <p style="margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:10px;color:#888888;letter-spacing:0.15em;text-transform:uppercase;opacity:0.6">Institutional Grade Custody</p>
+  </div>
+  <div class="absolute bottom-12 left-1/2 -translate-x-1/2 w-48 flex flex-col items-center gap-1">
+    <div class="w-full h-0.5 bg-white/5 rounded-full overflow-hidden">
+      <div id="splash-bar" class="h-full bg-electric-emerald rounded-full relative overflow-hidden" style="width:0%;transition:width 1.8s ease">
+        <div class="absolute inset-0 loading-shimmer"></div>
+      </div>
+    </div>
+    <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#888888;opacity:0.4;text-transform:uppercase;letter-spacing:0.1em">Iniciando protocolo seguro</span>
+  </div>
+  <div class="absolute top-8 left-8 flex items-center gap-1">
+    <div class="w-1.5 h-1.5 bg-electric-emerald rounded-full"></div>
+    <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#888888;opacity:0.5">v4.0.2 // encrypted</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     ONBOARDING
+═══════════════════════════════════════════ -->
+<div id="screen-onboarding" class="screen" style="background:#0A0A0A">
+  <div class="fixed top-0 right-0 w-1/2 h-1/2 rounded-full pointer-events-none" style="background:#00FF88;opacity:0.04;filter:blur(120px)"></div>
+  <!-- TopBar -->
+  <div class="top-bar">
+    <div class="flex items-center justify-between px-6 h-16">
+      <span style="font-family:'Geist',sans-serif;font-size:24px;font-weight:700;color:#00FF88;letter-spacing:-0.04em">V DeFi</span>
+      <button onclick="navigate('login')" style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#888888">Omitir</button>
+    </div>
+  </div>
+  <div class="scroll-content px-6 flex flex-col" style="padding-bottom:120px">
+    <!-- Steps indicator -->
+    <div id="onboarding-steps" class="flex gap-2 mb-6 mt-2">
+      <div class="onboarding-dot active"></div>
+      <div class="onboarding-dot"></div>
+      <div class="onboarding-dot"></div>
+    </div>
+    <!-- Slides container -->
+    <div id="onboarding-slides" style="position:relative;min-height:420px">
+      <!-- Slide 1 -->
+      <div class="onboarding-slide" data-slide="0">
+        <div class="rounded-xl overflow-hidden border border-white/8 mb-6" style="background:rgba(22,22,22,0.5);height:260px;display:flex;align-items:center;justify-content:center;position:relative">
+          <div style="position:absolute;width:160px;height:160px;background:#00FF88;opacity:0.08;filter:blur(60px);border-radius:50%"></div>
+          <div style="text-align:center;position:relative;z-index:1">
+            <span class="material-symbols-outlined" style="font-size:80px;color:#00FF88;opacity:0.8">public</span>
+          </div>
+        </div>
+        <h1 style="font-family:'Geist',sans-serif;font-size:28px;font-weight:700;color:#E0E0E0;line-height:1.2;margin-bottom:12px">Mueve dinero globalmente como <span style="color:#00FF88">enviar un link.</span></h1>
+        <p style="font-family:'Inter',sans-serif;font-size:14px;color:#888888;line-height:1.6">Liquidaciones instantáneas y seguridad de grado institucional en 50+ países.</p>
+      </div>
+      <!-- Slide 2 -->
+      <div class="onboarding-slide" data-slide="1" style="display:none">
+        <div class="rounded-xl overflow-hidden border border-white/8 mb-6" style="background:rgba(22,22,22,0.5);height:260px;display:flex;align-items:center;justify-content:center;position:relative">
+          <div style="position:absolute;width:160px;height:160px;background:#00FF88;opacity:0.08;filter:blur(60px);border-radius:50%"></div>
+          <div style="text-align:center;position:relative;z-index:1">
+            <span class="material-symbols-outlined" style="font-size:80px;color:#00FF88;opacity:0.8">link</span>
+          </div>
+        </div>
+        <h1 style="font-family:'Geist',sans-serif;font-size:28px;font-weight:700;color:#E0E0E0;line-height:1.2;margin-bottom:12px">Crea <span style="color:#00FF88">VanLinks</span> y cobra sin barreras</h1>
+        <p style="font-family:'Inter',sans-serif;font-size:14px;color:#888888;line-height:1.6">Genera un link de cobro en segundos. Compártelo por WhatsApp, SMS o email.</p>
+      </div>
+      <!-- Slide 3 -->
+      <div class="onboarding-slide" data-slide="2" style="display:none">
+        <div class="rounded-xl overflow-hidden border border-white/8 mb-6" style="background:rgba(22,22,22,0.5);height:260px;display:flex;align-items:center;justify-content:center;position:relative">
+          <div style="position:absolute;width:160px;height:160px;background:#00FF88;opacity:0.08;filter:blur(60px);border-radius:50%"></div>
+          <div style="text-align:center;position:relative;z-index:1">
+            <span class="material-symbols-outlined" style="font-size:80px;color:#00FF88;opacity:0.8;font-variation-settings:'FILL' 1">shield</span>
+          </div>
+        </div>
+        <h1 style="font-family:'Geist',sans-serif;font-size:28px;font-weight:700;color:#E0E0E0;line-height:1.2;margin-bottom:12px">Tu dinero, <span style="color:#00FF88">tu control.</span> Sin intermediarios.</h1>
+        <p style="font-family:'Inter',sans-serif;font-size:14px;color:#888888;line-height:1.6">Encriptación blockchain avanzada. Solo tú decides qué hacer con tu dinero.</p>
+      </div>
+    </div>
+  </div>
+  <!-- Bottom actions -->
+  <div style="position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;padding:16px 24px 32px;background:linear-gradient(to top,#0A0A0A 80%,transparent)">
+    <button id="onboarding-next-btn" onclick="onboardingNext()" class="neon-btn w-full" style="padding:16px;font-size:15px;letter-spacing:0.05em">
+      Continuar
+    </button>
+    <button onclick="navigate('login')" style="width:100%;margin-top:12px;padding:10px;font-family:'JetBrains Mono',monospace;font-size:12px;color:#888888;background:none;border:none;cursor:pointer">
+      Ya tengo cuenta · Iniciar sesión
+    </button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     LOGIN / SIGNUP
+═══════════════════════════════════════════ -->
+<div id="screen-login" class="screen" style="background:#0A0A0A">
+  <div class="fixed top-0 left-0 w-3/5 h-3/5 rounded-full pointer-events-none" style="background:#00FF88;opacity:0.04;filter:blur(120px)"></div>
+  <div class="fixed bottom-0 right-0 w-2/5 h-2/5 rounded-full pointer-events-none" style="background:#00FF88;opacity:0.04;filter:blur(100px)"></div>
+  <div class="top-bar">
+    <div class="flex items-center justify-center h-16">
+      <span style="font-family:'Geist',sans-serif;font-size:24px;font-weight:700;color:#00FF88;letter-spacing:-0.04em">V DeFi</span>
+    </div>
+  </div>
+  <div class="scroll-content px-6 flex flex-col justify-center" style="padding-bottom:40px">
+    <div style="max-width:380px;margin:0 auto;width:100%">
+      <div style="text-align:center;margin-bottom:32px">
+        <h1 style="font-family:'Geist',sans-serif;font-size:24px;font-weight:700;color:#e5e2e1;margin-bottom:8px">Bienvenido a V DeFi</h1>
+        <p style="font-family:'Inter',sans-serif;font-size:14px;color:#888888">Tu dinero. Tu control. Sin fronteras.</p>
+      </div>
+      <div class="glass-panel rounded-xl p-6" style="margin-bottom:24px">
+        <!-- Google -->
+        <button onclick="loginWith('google')" class="glass-card w-full h-12 flex items-center justify-center gap-3 rounded-lg mb-3 hover:border-white/20 transition-all" style="border:1px solid rgba(255,255,255,0.08)">
+          <svg width="20" height="20" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          <span style="font-family:'Inter',sans-serif;font-size:15px;color:#E0E0E0">Continuar con Google</span>
+        </button>
+        <!-- Apple -->
+        <button onclick="loginWith('apple')" class="glass-card w-full h-12 flex items-center justify-center gap-3 rounded-lg mb-4 hover:border-white/20 transition-all" style="border:1px solid rgba(255,255,255,0.08)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="color:#E0E0E0"><path d="M17.05 20.28c-.96.95-2.21 1.72-3.73 1.72-1.39 0-2.31-.58-3.32-.58-1.02 0-2.14.58-3.35.58-2.2 0-4.17-2.18-4.17-5.59 0-3.34 2.1-5.12 4.1-5.12 1.07 0 1.88.42 2.65.42.75 0 1.4-.41 2.51-.41 1.48 0 2.57.73 3.19 1.63-3.1 1.34-2.6 5.56.5 6.78-.34.98-.82 1.94-1.4 2.57zM12.03 7.25c-.02-2.11 1.61-3.95 3.51-4.08.18 2.34-2.15 4.31-3.51 4.08z"/></svg>
+          <span style="font-family:'Inter',sans-serif;font-size:15px;color:#E0E0E0">Continuar con Apple</span>
+        </button>
+        <div class="flex items-center gap-4 mb-4">
+          <div style="flex:1;height:1px;background:rgba(255,255,255,0.08)"></div>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#888888">O</span>
+          <div style="flex:1;height:1px;background:rgba(255,255,255,0.08)"></div>
+        </div>
+        <!-- Email -->
+        <input id="login-email" type="email" placeholder="nombre@email.com" style="width:100%;height:48px;background:#0A0A0A;border:none;border-bottom:1px solid rgba(255,255,255,0.15);color:#e5e2e1;font-family:'Inter',sans-serif;font-size:15px;padding:0 8px;outline:none;margin-bottom:12px;transition:border-color 0.2s" onfocus="this.style.borderBottomColor='#00FF88'" onblur="this.style.borderBottomColor='rgba(255,255,255,0.15)'"/>
+        <button onclick="loginWith('email')" class="neon-btn w-full" style="padding:14px;font-size:15px">
+          Continuar con Email
+        </button>
+      </div>
+      <p style="text-align:center;font-family:'Inter',sans-serif;font-size:12px;color:#888888;line-height:1.6">
+        Al continuar aceptas los <a href="#" style="color:#E0E0E0">Términos de Servicio</a> y la <a href="#" style="color:#E0E0E0">Política de Privacidad</a>.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     HOME DASHBOARD
+═══════════════════════════════════════════ -->
+<div id="screen-home" class="screen" style="background:#0A0A0A">
+  <!-- TopBar -->
+  <div class="top-bar">
+    <div class="flex items-center justify-between px-6 h-16">
+      <div class="flex items-center gap-3">
+        <div style="width:32px;height:32px;border-radius:50%;overflow:hidden;background:#2a2a2a;border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center">
+          <span class="material-symbols-outlined" style="font-size:20px;color:#888888">person</span>
+        </div>
+        <span style="font-family:'Geist',sans-serif;font-size:22px;font-weight:700;color:#00FF88;letter-spacing:-0.04em">V DeFi</span>
+      </div>
+      <button onclick="showNotifications()" style="background:none;border:none;cursor:pointer;color:#888888;position:relative">
+        <span class="material-symbols-outlined">notifications</span>
+        <span style="position:absolute;top:-2px;right:-2px;width:8px;height:8px;border-radius:50%;background:#00FF88;border:1.5px solid #0A0A0A"></span>
+      </button>
+    </div>
+  </div>
+  <div class="scroll-content px-6">
+    <!-- Balance Card -->
+    <section style="position:relative;margin-bottom:24px;margin-top:8px">
+      <div style="position:absolute;inset:-4px;background:rgba(0,255,136,0.08);filter:blur(24px);border-radius:24px;pointer-events:none"></div>
+      <div class="emerald-glow" style="position:relative;background:#161616;border:1px solid rgba(255,255,255,0.08);border-radius:24px;padding:28px;min-height:200px;overflow:hidden">
+        <div style="position:absolute;top:0;right:0;width:200px;height:200px;background:linear-gradient(135deg,rgba(0,255,136,0.05),transparent);border-radius:50%;margin-right:-60px;margin-top:-60px"></div>
+        <p style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#888888;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:8px">Balance Total</p>
+        <div class="flex items-baseline gap-2 mb-2">
+          <span class="metallic-shimmer" style="font-family:'Geist',sans-serif;font-size:42px;font-weight:800;letter-spacing:-0.04em">$2,458.75</span>
+        </div>
+        <p style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#888888;margin-bottom:4px">Equivalente en USDC 2,458.75</p>
+        <div class="flex items-center gap-2" style="color:#00FF88">
+          <span class="material-symbols-outlined" style="font-size:14px;font-variation-settings:'FILL' 1">trending_up</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px">+4.2% (+$98.30)</span>
+        </div>
+        <div class="flex justify-between items-end" style="margin-top:20px">
+          <div class="flex" style="gap:-8px">
+            <div style="width:28px;height:28px;border-radius:50%;border:2px solid #0A0A0A;background:#627EEA;display:flex;align-items:center;justify-content:center;margin-right:-8px">
+              <span style="font-size:10px;color:white;font-weight:700">Ξ</span>
+            </div>
+            <div style="width:28px;height:28px;border-radius:50%;border:2px solid #0A0A0A;background:#F7931A;display:flex;align-items:center;justify-content:center;margin-right:-8px">
+              <span style="font-size:10px;color:white;font-weight:700">₿</span>
+            </div>
+            <div style="width:28px;height:28px;border-radius:50%;border:2px solid #0A0A0A;background:#26A17B;display:flex;align-items:center;justify-content:center">
+              <span style="font-size:10px;color:white;font-weight:700">$</span>
+            </div>
+          </div>
+          <p style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#888888">Secured via VanLink</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Actions -->
+    <section style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:24px">
+      <button class="action-btn" onclick="navigate('send')">
+        <div class="action-icon"><span class="material-symbols-outlined" style="color:#00FF88">send</span></div>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#888888">Enviar</span>
+      </button>
+      <button class="action-btn" onclick="navigate('receive')">
+        <div class="action-icon"><span class="material-symbols-outlined" style="color:#00FF88">call_received</span></div>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#888888">Solicitar</span>
+      </button>
+      <button class="action-btn" onclick="navigate('vanlink')">
+        <div class="action-icon primary"><span class="material-symbols-outlined" style="color:#003919;font-variation-settings:'FILL' 1;font-weight:700">link</span></div>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#00FF88;font-weight:700">VanLink</span>
+      </button>
+      <button class="action-btn" onclick="navigate('activity')">
+        <div class="action-icon"><span class="material-symbols-outlined" style="color:#00FF88">receipt_long</span></div>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#888888">Historial</span>
+      </button>
+    </section>
+
+    <!-- Recent Activity -->
+    <section style="margin-bottom:24px">
+      <div class="flex items-center justify-between" style="margin-bottom:16px">
+        <h2 style="font-family:'Geist',sans-serif;font-size:20px;font-weight:700;color:#E0E0E0">Actividad reciente</h2>
+        <button onclick="navigate('activity')" style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#00FF88;background:none;border:none;cursor:pointer">Ver todo</button>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div class="glass-card rounded-xl p-4 flex items-center justify-between" style="cursor:pointer" onclick="navigate('activity')">
+          <div class="flex items-center gap-4">
+            <div style="width:40px;height:40px;border-radius:50%;background:#201f1f;display:flex;align-items:center;justify-content:center">
+              <span class="material-symbols-outlined" style="color:#00FF88;font-size:20px">link</span>
+            </div>
+            <div>
+              <p style="font-family:'Inter',sans-serif;font-size:15px;color:#e5e2e1;font-weight:500">VanLink recibido</p>
+              <p style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#888888">Hoy, 10:45 AM</p>
+            </div>
+          </div>
+          <p style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#00FF88">+120.00 USDC</p>
+        </div>
+        <div class="glass-card rounded-xl p-4 flex items-center justify-between" style="cursor:pointer" onclick="navigate('activity')">
+          <div class="flex items-center gap-4">
+            <div style="width:40px;height:40px;border-radius:50%;background:#201f1f;display:flex;align-items:center;justify-content:center">
+              <span class="material-symbols-outlined" style="color:#00FF88;font-size:20px">send</span>
+            </div>
+            <div>
+              <p style="font-family:'Inter',sans-serif;font-size:15px;color:#e5e2e1;font-weight:500">Enviado a Carlos</p>
+              <p style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#888888">Ayer, 4:30 PM</p>
+            </div>
+          </div>
+          <p style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffb4ab">-85.00 USDC</p>
+        </div>
+        <div class="glass-card rounded-xl p-4 flex items-center justify-between" style="cursor:pointer" onclick="navigate('activity')">
+          <div class="flex items-center gap-4">
+            <div style="width:40px;height:40px;border-radius:50%;background:#201f1f;display:flex;align-items:center;justify-content:center">
+              <span class="material-symbols-outlined" style="color:#00FF88;font-size:20px">credit_card</span>
+            </div>
+            <div>
+              <p style="font-family:'Inter',sans-serif;font-size:15px;color:#e5e2e1;font-weight:500">Compra con tarjeta</p>
+              <p style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#888888">13 May, 9:15 AM</p>
+            </div>
+          </div>
+          <p style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#00FF88">+300.00 USDC</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bento Stats -->
+    <section style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+      <div class="glass-card rounded-2xl p-4" style="display:flex;flex-direction:column;gap:8px">
+        <span class="material-symbols-outlined" style="color:#00FF88;font-size:20px;font-variation-settings:'FILL' 1">shield</span>
+        <p style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#888888;text-transform:uppercase">Seguridad</p>
+        <p style="font-family:'Geist',sans-serif;font-size:22px;font-weight:700;color:#e5e2e1">98%</p>
+      </div>
+      <div class="glass-card rounded-2xl p-4" style="display:flex;flex-direction:column;gap:8px">
+        <span class="material-symbols-outlined" style="color:#e5c364;font-size:20px">bolt</span>
+        <p style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#888888;text-transform:uppercase">Rendimiento</p>
+        <p style="font-family:'Geist',sans-serif;font-size:22px;font-weight:700;color:#e5e2e1">12.4%</p>
+      </div>
+    </section>
+  </div>
+  <!-- Bottom Nav -->
+  <nav class="bottom-nav">
+    <div class="flex justify-around items-center px-4 py-2">
+      <button class="nav-item active" onclick="setTab('home')">
+        <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">grid_view</span>
+        <span class="label">Inicio</span>
+      </button>
+      <button class="nav-item" onclick="navigate('activity')">
+        <span class="material-symbols-outlined">receipt_long</span>
+        <span class="label">Tarjetas</span>
+      </button>
+      <button class="nav-item" onclick="navigate('rewards')">
+        <span class="material-symbols-outlined">redeem</span>
+        <span class="label">Rewards</span>
+      </button>
+      <button class="nav-item" onclick="navigate('account')">
+        <span class="material-symbols-outlined">person</span>
+        <span class="label">Perfil</span>
+      </button>
+    </div>
+  </nav>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SEND MONEY
+═══════════════════════════════════════════ -->
+<div id="screen-send" class="screen" style="background:#0A0A0A">
+  <div class="top-bar">
+    <div class="flex items-center justify-between px-6 h-16">
+      <button onclick="navigate('home')" style="background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:8px;color:#888888">
+        <span class="material-symbols-outlined">arrow_back</span>
+        <span style="font-family:'Geist',sans-serif;font-size:22px;font-weight:700;color:#00FF88;letter-spacing:-0.04em">V DeFi</span>
+      </button>
+      <span class="material-symbols-outlined" style="color:#888888">notifications</span>
+    </div>
+  </div>
+  <div class="scroll-content px-6">
+    <div style="margin-bottom:24px;margin-top:8px">
+      <h1 style="font-family:'Geist',sans-serif;font-size:22px;font-weight:700;color:#e5e2e1;margin-bottom:4px">Enviar dinero</h1>
+      <p style="font-family:'Inter',sans-serif;font-size:13px;color:#888888">Transfiere activos al instante en 50+ países.</p>
+    </div>
+
+    <!-- Country selection -->
+    <div style="margin-bottom:20px">
+      <label style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#888888;text-transform:uppercase;letter-spacing:0.08em;display:block;margin-bottom:10px">País del destinatario</label>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <button id="country-mexico" onclick="selectCountry('mexico')" class="glass-card flex items-center gap-3 rounded-xl p-3 transition-all" style="border:1px solid rgba(0,255,136,0.35)">
+          <span style="font-size:22px">🇲🇽</span>
+          <span style="font-family:'Inter',sans-serif;font-size:15px;color:#e5e2e1">México</span>
+        </button>
+        <button id="country-usa" onclick="selectCountry('usa')" class="glass-card flex items-center gap-3 rounded-xl p-3 transition-all" style="border:1px solid rgba(255,255,255,0.08)">
+          <span style="font-size:22px">🇺🇸</span>
+          <span style="font-family:'Inter',sans-serif;font-size:15px;color:#e5e2e1">EE.UU.</span>
+        </button>
+        <button id="country-europe" onclick="selectCountry('europe')" class="glass-card flex items-center gap-3 rounded-xl p-3 transition-all" style="border:1px solid rgba(255,255,255,0.08)">
+          <span style="font-size:22px">🇪🇺</span>
+          <span style="font-family:'Inter',sans-serif;font-size:15px;color:#e5e2e1">Europa</span>
+        </button>
+        <button id="country-latam" onclick="selectCountry('latam')" class="glass-card flex items-center gap-3 rounded-xl p-3 transition-all" style="border:1px solid rgba(255,255,255,0.08)">
+          <span class="material-symbols-outlined" style="color:#888888">public</span>
+          <span style="font-family:'Inter',sans-serif;font-size:15px;color:#888888">Más</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Amount input -->
+    <div class="glass-card rounded-xl p-5 emerald-glow-focus" style="margin-bottom:20px;border:1px solid rgba(255,255,255,0.08);transition:border-color 0.2s" id="send-amount-card">
+      <div class="flex justify-between items-center" style="margin-bottom:10px">
+        <label style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#888888;text-transform:uppercase">Tú envías</label>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#00FF88">SALDO: 2,458.75 USDC</span>
+      </div>
+      <div class="flex items-baseline gap-2" style="margin-bottom:16px">
+        <input id="send-amount" type="number" value="100" min="1" max="2458.75" oninput="updateSendCalc()" style="background:transparent;border:none;outline:none;font-family:'Geist',sans-serif;font-size:36px;font-weight:800;color:#e5e2e1;width:100%" onfocus="document.getElementById('send-amount-card').style.borderColor='#00FF88'" onblur="document.getElementById('send-amount-card').style.borderColor='rgba(255,255,255,0.08)'"/>
+        <span style="font-family:'Geist',sans-serif;font-size:18px;font-weight:700;color:#00FF88">USDC</span>
+      </div>
+      <div style="position:relative;padding:12px 0">
+        <div style="position:absolute;left:12px;top:0;bottom:0;width:1px;background:rgba(255,255,255,0.08)"></div>
+        <div class="flex items-center gap-4" style="margin-left:28px;margin-bottom:10px">
+          <div style="width:8px;height:8px;border-radius:50%;background:#888888"></div>
+          <div class="flex justify-between" style="flex:1;font-family:'JetBrains Mono',monospace;font-size:11px;color:#888888">
+            <span>COMISIÓN (1%)</span>
+            <span id="send-fee">1.00 USDC</span>
+          </div>
+        </div>
+        <div class="flex items-center gap-4" style="margin-left:28px">
+          <div class="emerald-bloom" style="width:8px;height:8px;border-radius:50%;background:#00FF88"></div>
+          <div class="flex justify-between items-center" style="flex:1">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#888888">EL DESTINATARIO RECIBE</span>
+            <span id="send-recv" style="font-family:'Inter',sans-serif;font-size:15px;color:#e5e2e1;font-weight:700">1,731.15 MXN</span>
+          </div>
+        </div>
+      </div>
+      <div class="flex justify-between items-center" style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.08)">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#888888">TIPO DE CAMBIO</span>
+        <span id="send-rate" style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#e5e2e1">1 USDC = 17.45 MXN</span>
+      </div>
+    </div>
+
+    <!-- Delivery method -->
+    <div style="margin-bottom:24px">
+      <label style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#888888;text-transform:uppercase;letter-spacing:0.08em;display:block;margin-bottom:10px">Tipo de entrega</label>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <button onclick="selectDelivery('vanlink')" id="delivery-vanlink" class="glass-card flex items-center justify-between p-4 rounded-xl transition-all" style="border:1px solid rgba(0,255,136,0.25)">
+          <div class="flex items-center gap-4">
+            <span class="material-symbols-outlined" style="color:#00FF88">link</span>
+            <div style="text-align:left">
+              <p style="font-family:'Inter',sans-serif;font-size:15px;color:#e5e2e1;font-weight:500">VanLink</p>
+              <p style="font-family:'Inter',sans-serif;font-size:12px;color:#888888">Entrega instantánea</p>
+            </div>
+          </div>
+          <div id="radio-vanlink" style="width:20px;height:20px;border-radius:50%;border:2px solid #00FF88;display:flex;align-items:center;justify-content:center">
+            <div style="width:10px;height:10px;border-radius:50%;background:#00FF88"></div>
+          </div>
+        </button>
+        <button onclick="selectDelivery('bank')" id="delivery-bank" class="glass-card flex items-center justify-between p-4 rounded-xl transition-all" style="border:1px solid rgba(255,255,255,0.08);opacity:0.7">
+          <div class="flex items-center gap-4">
+            <span class="material-symbols-outlined" style="color:#888888">account_balance</span>
+            <div style="text-align:left">
+              <p style="font-family:'Inter',sans-serif;font-size:15px;color:#e5e2e1;font-weight:500">Cuenta bancaria</p>
+              <p style="font-family:'Inter',sans-serif;font-size:12px;color:#888888">1-2 días hábiles</p>
+            </div>
+          </div>
+          <div id="radio-bank" style="width:20px;height:20px;border-radius:50%;border:2px solid rgba(255,255,255,0.2)"></div>
+        </button>
+      </div>
+    </div>
+
+    <button onclick="navigate('send-confirm')" class="neon-btn w-full" style="padding:16px;font-size:16px;margin-bottom:16px">
+      Generar VanLink
+    </button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SEND CONFIRM (reuse vanlink-success style)
+═══════════════════════════════════════════ -->
+<div id="screen-send-confirm" class="screen" style="background:#0A0A0A;align-items:center">
+  <div class="top-bar">
+    <div class="flex items-center justify-between px-6 h-16">
+      <button onclick="navigate('send')" style="background:none;border:none;cursor:pointer;color:#888888">
+        <span class="material-symbols-outlined">arrow_back</span>
+      </button>
+      <span style="font-family:'Geist',sans-serif;font-size:22px;font-weight:700;color:#00FF88;letter-spacing:-0.04em">V DeFi</span>
+      <span class="material-symbols-outlined" style="color:#888888">notifications</span>
+    </div>
+  </div>
+  <div class="scroll-content px-6 flex flex-col items-center justify-center" style="width:100%;max-width:430px">
+    <div style="position:absolute;width:200px;height:200px;background:#00FF88;opacity:0.05;filter:blur(80px);border-radius:50%;pointer-events:none"></div>
+    <div style="position:relative;margin-bottom:24px">
+      <div class="emerald-glow" style="width:88px;height:88px;border-radius:50%;border:2px solid #00FF88;display:flex;align-items:center;justify-content:center;background:rgba(0,255,136,0.08)">
+        <span class="material-symbols-outlined emerald-bloom" style="font-size:44px;color:#00FF88;font-variation-settings:'wght' 700">check</span>
+      </div>
+    </div>
+    <div style="text-align:center;margin-bottom:24px;width:100%">
+      <h1 style="font-family:'Geist',sans-serif;font-size:24px;font-weight:700;color:#e5e2e1;margin-bottom:8px">¡VanLink generado!</h1>
+      <p style="font-family:'Inter',sans-serif;font-size:14px;color:#888888">Tu link de pago está activo y listo para compartir.</p>
+    </div>
+    <div class="glass-card rounded-xl p-4 flex items-center justify-between w-full" style="margin-bottom:24px">
+      <div>
+        <p style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#888888;text-transform:uppercase;margin-bottom:4px">Tu Link</p>
+        <p style="font-family:'JetBrains Mono',monospace;font-size:14px;color:#00FF88" id="generated-link">vdefi.com/vl/8f3a7k</p>
+      </div>
+      <button onclick="copyLink()" style="height:36px;padding:0 14px;background:#2a2a2a;border:1px solid rgba(255,255,255,0.08);border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#e5e2e1;cursor:pointer">COPIAR</button>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;width:100%;margin-bottom:24px">
+      <button onclick="share('whatsapp')" class="glass-card rounded-xl py-4 flex flex-col items-center gap-2">
+        <div style="width:40px;height:40px;border-radius:50%;background:#2a2a2a;display:flex;align-items:center;justify-content:center">
+          <span class="material-symbols-outlined" style="color:#e5e2e1">chat_bubble</span>
+        </div>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#888888">WhatsApp</span>
+      </button>
+      <button onclick="share('telegram')" class="glass-card rounded-xl py-4 flex flex-col items-center gap-2">
+        <div style="width:40px;height:40px;border-radius:50%;background:#2a2a2a;display:flex;align-items:center;justify-content:center">
+          <span class="material-symbols-outlined" style="color:#e5e2e1">send</span>
+        </div>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#888888">Telegram</span>
+      </button>
+      <button onclick="share('email')" class="glass-card rounded-xl py-4 flex flex-col items-center gap-2">
+        <div style="width:40px;height:40px;border-radius:50%;background:#2a2a2a;display:flex;align-items:center;justify-content:center">
+          <span class="material-symbols-outlined" style="color:#e5e2e1">mail</span>
+        </div>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#888888">Email</span>
+      </button>
+    </div>
+    <button onclick="navigate('home')" class="neon-btn w-full" style="padding:16px;font-size:15px">Ir al inicio</button>
+    <button onclick="navigate('activity')" style="width:100%;margin-top:12px;padding:12px;font-family:'JetBrains Mono',monospace;font-size:12px;color:#888888;background:none;border:none;cursor:pointer">Ver detalles</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     RECEIVE MONEY
+═══════════════════════════════════════════ -->
+<div id="screen-receive" class="screen" style="background:#0A0A0A">
+  <div class="top-bar">
+    <div class="flex items-center justify-between px-6 h-16">
+      <button onclick="navigate('home')" style="background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:8px;color:#888888">
+        <span class="material-symbols-outlined">arrow_back</span>
+        <span style="font-family:'Geist',sans-serif;font-size:22px;font-weight:700;color:#00FF88;letter-spacing:-0.04em">V DeFi</span>
+      </button>
+      <span class="material-symbols-outlined" style="color:#00FF88">notifications</span>
+    </div>
+  </div>
+  <div class="scroll-content px-6">
+    <section style="margin-bottom:24px;margin-top:8px;text-align:center">
+      <div style="display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;background:rgba(0,255,136,0.08);border:1px solid rgba(0,255,136,0.2);margin-bottom:16px">
+        <span style="width:8px;height:8px;border-radius:50%;background:#00FF88;box-shadow:0 0 8px rgba(0,255,136,0.8)"></span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#00FF88">TRANSFERENCIA ENTRANTE SEGURA</span>
+      </div>
+      <h1 style="font-family:'Geist',sans-serif;font-size:44px;font-weight:800;color:#e5e2e1;margin-bottom:8px;letter-spacing:-0.04em">Cobrar $500.00</h1>
+      <p style="font-family:'Inter',sans-serif;font-size:14px;color:#888888">Lista para liquidar en tu cuenta</p>
+    </section>
+    <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:24px">
+      <div class="glass-card emerald-glow rounded-xl p-6" style="position:relative;overflow:hidden">
+        <div style="position:absolute;right:-20px;top:-20px;width:100px;height:100px;background:rgba(0,255,136,0.05);border-radius:50%;filter:blur(30px)"></div>
+        <div class="flex justify-between items-start" style="margin-bottom:20px">
+          <div>
+            <p style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#888888;text-transform:uppercase;margin-bottom:4px">Remitente</p>
+            <p style="font-family:'Geist',sans-serif;font-size:20px;font-weight:700;color:#e5e2e1">Global Payouts Ltd</p>
+          </div>
+          <div class="glass-card p-2 rounded-lg">
+            <span class="material-symbols-outlined" style="color:#00FF88;font-variation-settings:'FILL' 1">verified_user</span>
+          </div>
+        </div>
+        <div class="flex items-center gap-4 py-4" style="border-top:1px solid rgba(255,255,255,0.08)">
+          <div style="flex:1">
+            <p style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#888888;margin-bottom:4px">LLEGADA ESTIMADA</p>
+            <p style="font-family:'Inter',sans-serif;font-size:15px;color:#e5e2e1;font-weight:600">Liquidación instantánea</p>
+          </div>
+          <div style="flex:1;border-left:1px solid rgba(255,255,255,0.08);padding-left:16px">
+            <p style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#888888;margin-bottom:4px">COMISIÓN</p>
+            <p style="font-family:'Inter',sans-serif;font-size:15px;color:#00FF88;font-weight:600">$0.00</p>
+          </div>
+        </div>
+      </div>
+      <p style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#888888;text-transform:uppercase;letter-spacing:0.08em;margin-top:8px">Selecciona método de retiro</p>
+      <button onclick="navigate('home')" class="glass-card flex items-center gap-4 p-5 rounded-xl text-left hover:border-electric-emerald/40 transition-all group">
+        <div style="width:48px;height:48px;border-radius:10px;background:#201f1f;border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center">
+          <span class="material-symbols-outlined" style="color:#00FF88">account_balance</span>
+        </div>
+        <div style="flex:1">
+          <p style="font-family:'Inter',sans-serif;font-size:15px;color:#e5e2e1;font-weight:600">Retirar al banco</p>
+          <p style="font-family:'Inter',sans-serif;font-size:12px;color:#888888">SPEI · 1-3 días hábiles</p>
+        </div>
+        <span class="material-symbols-outlined" style="color:#888888">chevron_right</span>
+      </button>
+      <button onclick="navigate('home')" class="glass-card flex items-center gap-4 p-5 rounded-xl text-left hover:border-electric-emerald/40 transition-all">
+        <div style="width:48px;height:48px;border-radius:10px;background:#201f1f;border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center">
+          <span class="material-symbols-outlined" style="color:#00FF88">credit_card</span>
+        </div>
+        <div style="flex:1">
+          <p style="font-family:'Inter',sans-serif;font-size:15px;color:#e5e2e1;font-weight:600">Tarjeta Visa/Mastercard</p>
+          <p style="font-family:'Inter',sans-serif;font-size:12px;color:#888888">Instantáneo</p>
+        </div>
+        <span class="material-symbols-outlined" style="color:#888888">chevron_right</span>
+      </button>
+      <button onclick="navigate('home')" class="glass-card flex items-center gap-4 p-5 rounded-xl text-left hover:border-electric-emerald/40 transition-all">
+        <div style="width:48px;height:48px;border-radius:10px;background:#201f1f;border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center">
+          <span class="material-symbols-outlined" style="color:#00FF88">payments</span>
+        </div>
+        <div style="flex:1">
+          <p style="font-family:'Inter',sans-serif;font-size:15px;color:#e5e2e1;font-weight:600">Retiro en efectivo</p>
+          <p style="font-family:'Inter',sans-serif;font-size:12px;color:#888888">Puntos autorizados · 1 hora</p>
+        </div>
+        <span class="material-symbols-outlined" style="color:#888888">chevron_right</span>
+      </button>
+    </div>
+    <div class="flex items-center justify-center gap-2" style="opacity:0.5;margin-bottom:16px">
+      <span class="material-symbols-outlined" style="font-size:14px">lock</span>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.05em">Liquidación cifrada de extremo a extremo</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     VANLINK GENERATOR
+═══════════════════════════════════════════ -->
+<div id="screen-vanlink" class="screen" style="background:#0A0A0A">
+  <div class="top-bar">
+    <div class="flex items-center justify-between px-6 h-16">
+      <button onclick="navigate('home')" style="background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:8px;color:#888888">
+        <span class="material-symbols-outlined">arrow_back</span>
+        <span style="font-family:'Geist',sans-serif;font-size:22px;font-weight:700;color:#00FF88;letter-spacing:-0.04em">V DeFi</span>
+      </button>
+      <span class="material-symbols-outlined" style="color:#888888">notifications</span>
+    </div>
+  </div>
+  <div class="scroll-content px-6">
+    <div style="margin-bottom:24px;margin-top:8px">
+      <h1 style="font-family:'Geist',sans-serif;font-size:22px;font-weight:700;color:#e5e2e1;margin-bottom:4px">Generador VanLink</h1>
+      <p style="font-family:'Inter',sans-serif;font-size:13px;color:#888888">Crea un link de cobro seguro al instante.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <!-- Amount -->
+      <div class="glass-panel rounded-xl p-4" id="vanlink-amount-card" style="transition:box-shadow 0.2s,border-color 0.2s;border:1px solid rgba(255,255,255,0.08)">
+        <label style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#888888;text-transform:uppercase;display:block;margin-bottom:10px">MONTO A SOLICITAR</label>
+        <div class="flex items-baseline gap-2">
+          <span style="font-family:'Geist',sans-serif;font-size:20px;font-weight:700;color:#00FF88">USDC</span>
+          <input id="vanlink-amount" type="number" placeholder="0.00" oninput="updateVanlinkFee()" onfocus="document.getElementById('vanlink-amount-card').style.boxShadow='0 0 20px rgba(0,255,136,0.15)';document.getElementById('vanlink-amount-card').style.borderColor='#00FF88'" onblur="document.getElementById('vanlink-amount-card').style.boxShadow='none';document.getElementById('vanlink-amount-card').style.borderColor='rgba(255,255,255,0.08)'" style="background:transparent;border:none;outline:none;font-family:'Geist',sans-serif;font-size:36px;font-weight:800;color:#e5e2e1;width:100%"/>
+        </div>
+        <div class="flex items-center gap-1" style="margin-top:8px">
+          <span style="width:6px;height:6px;border-radius:50%;background:#00FF88;box-shadow:0 0 8px #00FF88"></span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#888888">COMISIÓN EST: 0.05% · <span id="vanlink-fee">0.00 USDC</span></span>
+        </div>
+      </div>
+      <!-- Zone + Visibility -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div class="glass-panel rounded-xl p-4" style="border:1px solid rgba(255,255,255,0.08)">
+          <label style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#888888;text-transform:uppercase;display:block;margin-bottom:10px">ZONA</label>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined" style="color:#E0E0E0;font-size:18px">public</span>
+              <span style="font-family:'Inter',sans-serif;font-size:14px;color:#e5e2e1">Global</span>
+            </div>
+            <span class="material-symbols-outlined" style="color:#888888;font-size:16px">expand_more</span>
+          </div>
+        </div>
+        <div class="glass-panel rounded-xl p-4" style="border:1px solid rgba(255,255,255,0.08)">
+          <label style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#888888;text-transform:uppercase;display:block;margin-bottom:10px">VISIBILIDAD</label>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined" style="color:#00FF88;font-size:18px;font-variation-settings:'FILL' 1">lock</span>
+              <span style="font-family:'Inter',sans-serif;font-size:14px;color:#e5e2e1">Privado</span>
+            </div>
+            <span class="material-symbols-outlined" style="color:#888888;font-size:16px">expand_more</span>
+          </div>
+        </div>
+      </div>
+      <!-- Expiration -->
+      <div class="glass-panel rounded-xl p-4" style="border:1px solid rgba(255,255,255,0.08)">
+        <label style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#888888;text-transform:uppercase;display:block;margin-bottom:10px">VENTANA DE EXPIRACIÓN</label>
+        <div style="display:flex;gap:8px">
+          <button onclick="setExpiry(this,'1H')" class="glass-card flex-1 py-2 rounded-lg font-label-mono text-label-mono text-white hover:border-electric-emerald" style="border:1px solid rgba(255,255,255,0.08);font-family:'JetBrains Mono',monospace;font-size:12px;color:#e5e2e1;cursor:pointer;background:none">1H</button>
+          <button onclick="setExpiry(this,'24H')" class="flex-1 py-2 rounded-lg" id="expiry-active" style="border:1px solid #00FF88;background:rgba(0,255,136,0.08);font-family:'JetBrains Mono',monospace;font-size:12px;color:#00FF88;cursor:pointer">24H</button>
+          <button onclick="setExpiry(this,'1W')" class="glass-card flex-1 py-2 rounded-lg" style="border:1px solid rgba(255,255,255,0.08);font-family:'JetBrains Mono',monospace;font-size:12px;color:#e5e2e1;cursor:pointer;background:none">1S</button>
+          <button onclick="setExpiry(this,'NO')" class="glass-card flex-1 py-2 rounded-lg" style="border:1px solid rgba(255,255,255,0.08);font-family:'JetBrains Mono',monospace;font-size:11px;color:#e5e2e1;cursor:pointer;background:none">SIN EXP</button>
+        </div>
+      </div>
+      <!-- Secure badge -->
+      <div class="glass-card rounded-xl overflow-hidden" style="height:100px;position:relative">
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,#0A0A0A,transparent)"></div>
+        <div style="position:absolute;bottom:12px;left:16px;right:16px;display:flex;justify-content:space-between;align-items:flex-end">
+          <div>
+            <p style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#888888">RED SEGURA</p>
+            <p style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#e5e2e1">V-PROTOCOL V2.4</p>
+          </div>
+          <span class="material-symbols-outlined" style="font-size:28px;color:#00FF88;font-variation-settings:'FILL' 1">verified_user</span>
+        </div>
+      </div>
+      <button onclick="generateVanlink()" class="neon-btn w-full" style="padding:16px;font-size:16px;margin-top:8px">
+        Generar VanLink
+      </button>
+      <p style="text-align:center;font-family:'JetBrains Mono',monospace;font-size:10px;color:#888888;padding-bottom:16px">POWERED BY V DEFI SECURE ENGINE</p>
+    </div>
+  </div>
+  <!-- Bottom Nav -->
+  <nav class="bottom-nav">
+    <div class="flex justify-around items-center px-4 py-2">
+      <button class="nav-item" onclick="navigate('home')"><span class="material-symbols-outlined">grid_view</span><span class="label">Inicio</span></button>
+      <button class="nav-item active" onclick="navigate('vanlink')"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">link</span><span class="label">VanLink</span></button>
+      <button class="nav-item" onclick="navigate('rewards')"><span class="material-symbols-outlined">redeem</span><span class="label">Rewards</span></button>
+      <button class="nav-item" onclick="navigate('account')"><span class="material-symbols-outlined">person</span><span class="label">Perfil</span></button>
+    </div>
+  </nav>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     ACTIVITY
+═══════════════════════════════════════════ -->
+<div id="screen-activity" class="screen" style="background:#0A0A0A">
+  <div class="top-bar">
+    <div class="flex items-center justify-between px-6 h-16">
+      <span style="font-family:'Geist',sans-serif;font-size:22px;font-weight:700;color:#00FF88;letter-spacing:-0.04em">V DeFi</span>
+      <span class="material-symbols-outlined" style="color:#888888">notifications</span>
+    </div>
+  </div>
+  <div class="scroll-content px-6">
+    <h1 style="font-family:'Geist',sans-serif;font-size:22px;font-weight:700;color:#E0E0E0;margin-bottom:4px;margin-top:8px">Actividad</h1>
+    <p style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#888888;margin-bottom:20px">Todas tus transacciones</p>
+    <!-- Filter chips -->
+    <div style="display:flex;gap:8px;margin-bottom:20px;overflow-x:auto;padding-bottom:4px">
+      <button onclick="filterActivity('all',this)" style="padding:6px 16px;border-radius:999px;background:#00FF88;color:#003919;font-family:'JetBrains Mono',monospace;font-size:11px;border:none;cursor:pointer;white-space:nowrap" id="filter-all">Todo</button>
+      <button onclick="filterActivity('in',this)" style="padding:6px 16px;border-radius:999px;background:rgba(255,255,255,0.05);color:#888888;font-family:'JetBrains Mono',monospace;font-size:11px;border:1px solid rgba(255,255,255,0.08);cursor:pointer;white-space:nowrap">Entrante</button>
+      <button onclick="filterActivity('out',this)" style="padding:6px 16px;border-radius:999px;background:rgba(255,255,255,0.05);color:#888888;font-family:'JetBrains Mono',monospace;font-size:11px;border:1px solid rgba(255,255,255,0.08);cursor:pointer;white-space:nowrap">Saliente</button>
+      <button onclick="filterActivity('vanlink',this)" style="padding:6px 16px;border-radius:999px;background:rgba(255,255,255,0.05);color:#888888;font-family:'JetBrains Mono',monospace;font-size:11px;border:1px solid rgba(255,255,255,0.08);cursor:pointer;white-space:nowrap">VanLink</button>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px" id="activity-list">
+      <!-- transactions rendered by JS -->
+    </div>
+  </div>
+  <nav class="bottom-nav">
+    <div class="flex justify-around items-center px-4 py-2">
+      <button class="nav-item" onclick="navigate('home')"><span class="material-symbols-outlined">grid_view</span><span class="label">Inicio</span></button>
+      <button class="nav-item active" onclick="navigate('activity')"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">receipt_long</span><span class="label">Tarjetas</span></button>
+      <button class="nav-item" onclick="navigate('rewards')"><span class="material-symbols-outlined">redeem</span><span class="label">Rewards</span></button>
+      <button class="nav-item" onclick="navigate('account')"><span class="material-symbols-outlined">person</span><span class="label">Perfil</span></button>
+    </div>
+  </nav>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     REWARDS
+═══════════════════════════════════════════ -->
+<div id="screen-rewards" class="screen" style="background:#0A0A0A">
+  <div class="top-bar">
+    <div class="flex items-center justify-between px-6 h-16">
+      <span style="font-family:'Geist',sans-serif;font-size:22px;font-weight:700;color:#00FF88;letter-spacing:-0.04em">V DeFi</span>
+      <span class="material-symbols-outlined" style="color:#00FF88">notifications</span>
+    </div>
+  </div>
+  <div class="scroll-content px-6">
+    <!-- Hero Tier Card -->
+    <div class="glass-card rounded-xl p-6" style="margin-bottom:16px;margin-top:8px;position:relative;overflow:hidden">
+      <div style="position:absolute;top:0;right:0;width:100px;height:100px;background:#00FF88;opacity:0.05;filter:blur(40px);margin:-30px"></div>
+      <div class="flex justify-between items-start" style="margin-bottom:16px">
+        <div>
+          <p style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#888888;text-transform:uppercase;margin-bottom:4px">Estado actual</p>
+          <h2 style="font-family:'Geist',sans-serif;font-size:22px;font-weight:800;color:#e5e2e1;font-style:italic">DIAMOND V</h2>
+        </div>
+        <div class="flex items-center gap-2" style="padding:4px 12px;border-radius:999px;background:#2a2a2a;border:1px solid rgba(255,255,255,0.08)">
+          <span style="width:8px;height:8px;border-radius:50%;background:#00FF88;box-shadow:0 0 8px #00FF88"></span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#00FF88">BOOST ACTIVO</span>
+        </div>
+      </div>
+      <div style="margin-bottom:8px">
+        <div class="flex justify-between" style="margin-bottom:6px">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#888888">Progreso de nivel</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#e5e2e1">12,450 / 15,000 XP</span>
+        </div>
+        <div style="height:6px;background:#353534;border-radius:999px;overflow:hidden">
+          <div class="emerald-glow" style="height:100%;width:83%;background:#00FF88;border-radius:999px"></div>
+        </div>
+      </div>
+      <p style="font-family:'Inter',sans-serif;font-size:13px;color:#888888">Gana <span style="color:#00FF88;font-weight:700">2,550 XP</span> más para desbloquear 2.5% cashback adicional.</p>
+    </div>
+    <!-- Bento stats -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
+      <div class="glass-card rounded-xl p-5" style="display:flex;flex-direction:column;justify-content:space-between;min-height:120px">
+        <p style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#888888">Cashback acumulado</p>
+        <div>
+          <h3 style="font-family:'Geist',sans-serif;font-size:22px;font-weight:800;color:#00FF88;text-shadow:0 0 8px rgba(0,255,136,0.4)">$1,240.50</h3>
+          <p style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#888888">+$42.20 esta semana</p>
+        </div>
+      </div>
+      <div class="glass-card rounded-xl p-5" style="display:flex;flex-direction:column;justify-content:space-between;min-height:120px">
+        <p style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#888888">Bonos de referidos</p>
+        <div>
+          <h3 style="font-family:'Geist',sans-serif;font-size:22px;font-weight:800;color:#E0E0E0">$850.00</h3>
+          <p style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#888888">12 nodos activos</p>
+        </div>
+      </div>
+    </div>
+    <!-- Referrals -->
+    <div style="margin-bottom:16px">
+      <div class="flex justify-between items-center" style="margin-bottom:12px">
+        <h3 style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#e5e2e1;text-transform:uppercase;letter-spacing:0.08em">Referidos recientes</h3>
+        <button style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#00FF88;background:none;border:none;cursor:pointer">Ver todo</button>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div class="glass-card rounded-lg p-4 flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div style="width:40px;height:40px;border-radius:10px;background:#2a2a2a;border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center">
+              <span class="material-symbols-outlined" style="color:#888888">person</span>
+            </div>
+            <div>
+              <p style="font-family:'Inter',sans-serif;font-size:15px;color:#e5e2e1;font-weight:500">alex_v_09</p>
+              <p style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#888888">Ingresó hace 2 días</p>
+            </div>
+          </div>
+          <div style="text-align:right">
+            <p style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#00FF88">+$50.00</p>
+            <p style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#888888;text-transform:uppercase">Pendiente</p>
+          </div>
+        </div>
+        <div class="glass-card rounded-lg p-4 flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div style="width:40px;height:40px;border-radius:10px;background:#2a2a2a;border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center">
+              <span class="material-symbols-outlined" style="color:#888888">person</span>
+            </div>
+            <div>
+              <p style="font-family:'Inter',sans-serif;font-size:15px;color:#e5e2e1;font-weight:500">cryptonight_x</p>
+              <p style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#888888">Ingresó hace 1 semana</p>
+            </div>
+          </div>
+          <div style="text-align:right">
+            <p style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#00FF88">+$50.00</p>
+            <p style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#00FF88;text-transform:uppercase">Liquidado</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- CTA -->
+    <div class="glass-card rounded-xl p-6" style="text-align:center;margin-bottom:16px">
+      <h3 style="font-family:'Geist',sans-serif;font-size:20px;font-weight:700;color:#e5e2e1;margin-bottom:8px">Escala la red</h3>
+      <p style="font-family:'Inter',sans-serif;font-size:13px;color:#888888;margin-bottom:20px;max-width:220px;margin-left:auto;margin-right:auto">Invita a tu círculo a V DeFi y gana comisiones perpetuas sobre su volumen.</p>
+      <button onclick="generateReferralLink()" class="neon-btn w-full" style="padding:14px;font-size:13px;letter-spacing:0.05em;margin-bottom:10px">GENERAR LINK DE INVITACIÓN</button>
+      <button style="width:100%;padding:14px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:10px;font-family:'JetBrains Mono',monospace;font-size:13px;color:#E0E0E0;cursor:pointer;letter-spacing:0.03em">COMPARTIR EN REDES</button>
+    </div>
+  </div>
+  <nav class="bottom-nav">
+    <div class="flex justify-around items-center px-4 py-2">
+      <button class="nav-item" onclick="navigate('home')"><span class="material-symbols-outlined">grid_view</span><span class="label">Inicio</span></button>
+      <button class="nav-item" onclick="navigate('activity')"><span class="material-symbols-outlined">receipt_long</span><span class="label">Tarjetas</span></button>
+      <button class="nav-item active" onclick="navigate('rewards')"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">redeem</span><span class="label">Rewards</span></button>
+      <button class="nav-item" onclick="navigate('account')"><span class="material-symbols-outlined">person</span><span class="label">Perfil</span></button>
+    </div>
+  </nav>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     ACCOUNT / PROFILE
+═══════════════════════════════════════════ -->
+<div id="screen-account" class="screen" style="background:#0A0A0A">
+  <div class="top-bar">
+    <div class="flex items-center justify-between px-6 h-16">
+      <span style="font-family:'Geist',sans-serif;font-size:22px;font-weight:700;color:#00FF88;letter-spacing:-0.04em">V DeFi</span>
+      <span class="material-symbols-outlined" style="color:#00FF88">notifications</span>
+    </div>
+  </div>
+  <div class="scroll-content px-6">
+    <!-- Profile Hero -->
+    <section style="display:flex;flex-direction:column;align-items:center;padding:16px 0 24px;margin-top:8px">
+      <div style="position:relative;margin-bottom:16px">
+        <div style="position:absolute;inset:-4px;background:rgba(0,255,136,0.2);border-radius:50%;filter:blur(10px);opacity:0.75"></div>
+        <div style="position:relative;width:88px;height:88px;border-radius:50%;padding:2px;background:linear-gradient(135deg,#00FF88,#0A0A0A);box-shadow:0 0 20px rgba(0,255,136,0.2)">
+          <div style="width:100%;height:100%;border-radius:50%;overflow:hidden;border:2px solid #0A0A0A;background:#2a2a2a;display:flex;align-items:center;justify-content:center">
+            <span class="material-symbols-outlined" style="font-size:44px;color:#888888">person</span>
+          </div>
+        </div>
+        <div style="position:absolute;bottom:2px;right:2px;width:24px;height:24px;border-radius:50%;background:#00FF88;border:2px solid #0A0A0A;display:flex;align-items:center;justify-content:center">
+          <span class="material-symbols-outlined" style="font-size:14px;color:#003919;font-variation-settings:'FILL' 1">check_circle</span>
+        </div>
+      </div>
+      <h2 style="font-family:'Geist',sans-serif;font-size:22px;font-weight:700;color:#E0E0E0;margin-bottom:4px">Alex Sterling</h2>
+      <p style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#888888;text-transform:uppercase;letter-spacing:0.12em">Miembro Premium</p>
+    </section>
+    <!-- Settings list -->
+    <section style="display:flex;flex-direction:column;gap:10px;margin-bottom:24px">
+      <div class="glass-card rounded-xl p-4 flex items-center justify-between" style="cursor:pointer">
+        <div class="flex items-center gap-4">
+          <div style="width:40px;height:40px;border-radius:10px;background:rgba(53,53,52,0.5);border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center">
+            <span class="material-symbols-outlined" style="color:#E0E0E0">verified_user</span>
+          </div>
+          <div>
+            <h3 style="font-family:'Inter',sans-serif;font-size:15px;color:#E0E0E0;font-weight:500">Estado KYC</h3>
+            <p style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#888888;text-transform:uppercase">Identidad verificada</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <div style="padding:2px 8px;border-radius:999px;background:rgba(0,255,136,0.08);border:1px solid rgba(0,255,136,0.2);display:flex;align-items:center;gap:4px">
+            <span style="width:6px;height:6px;border-radius:50%;background:#00FF88;box-shadow:0 0 4px #00FF88"></span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#00FF88">Verificado</span>
+          </div>
+          <span class="material-symbols-outlined" style="color:#888888;font-size:18px">chevron_right</span>
+        </div>
+      </div>
+      <div class="glass-card rounded-xl p-4 flex items-center justify-between" style="cursor:pointer">
+        <div class="flex items-center gap-4">
+          <div style="width:40px;height:40px;border-radius:10px;background:rgba(53,53,52,0.5);border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center">
+            <span class="material-symbols-outlined" style="color:#E0E0E0">payments</span>
+          </div>
+          <div>
+            <h3 style="font-family:'Inter',sans-serif;font-size:15px;color:#E0E0E0;font-weight:500">Métodos de pago</h3>
+            <p style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#888888;text-transform:uppercase">2 tarjetas guardadas</p>
+          </div>
+        </div>
+        <span class="material-symbols-outlined" style="color:#888888;font-size:18px">chevron_right</span>
+      </div>
+      <div class="glass-card rounded-xl p-4 flex items-center justify-between" style="cursor:pointer">
+        <div class="flex items-center gap-4">
+          <div style="width:40px;height:40px;border-radius:10px;background:rgba(53,53,52,0.5);border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center">
+            <span class="material-symbols-outlined" style="color:#E0E0E0">fingerprint</span>
+          </div>
+          <div>
+            <h3 style="font-family:'Inter',sans-serif;font-size:15px;color:#E0E0E0;font-weight:500">Seguridad</h3>
+            <p style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#888888;text-transform:uppercase">Auth biométrica activa</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#00FF88">Alta seguridad</span>
+          <span class="material-symbols-outlined" style="color:#888888;font-size:18px">chevron_right</span>
+        </div>
+      </div>
+      <div class="glass-card rounded-xl p-4 flex items-center justify-between" style="cursor:pointer">
+        <div class="flex items-center gap-4">
+          <div style="width:40px;height:40px;border-radius:10px;background:rgba(53,53,52,0.5);border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center">
+            <span class="material-symbols-outlined" style="color:#E0E0E0">account_balance</span>
+          </div>
+          <div>
+            <h3 style="font-family:'Inter',sans-serif;font-size:15px;color:#E0E0E0;font-weight:500">Cuentas bancarias</h3>
+            <p style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#888888;text-transform:uppercase">1 cuenta conectada</p>
+          </div>
+        </div>
+        <span class="material-symbols-outlined" style="color:#888888;font-size:18px">chevron_right</span>
+      </div>
+      <div class="glass-card rounded-xl p-4 flex items-center justify-between" style="cursor:pointer">
+        <div class="flex items-center gap-4">
+          <div style="width:40px;height:40px;border-radius:10px;background:rgba(53,53,52,0.5);border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center">
+            <span class="material-symbols-outlined" style="color:#E0E0E0">support_agent</span>
+          </div>
+          <div>
+            <h3 style="font-family:'Inter',sans-serif;font-size:15px;color:#E0E0E0;font-weight:500">Soporte</h3>
+            <p style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#888888;text-transform:uppercase">Concierge 24/7</p>
+          </div>
+        </div>
+        <span class="material-symbols-outlined" style="color:#888888;font-size:18px">chevron_right</span>
+      </div>
+    </section>
+    <!-- Sign out -->
+    <button onclick="signOut()" style="width:100%;padding:14px;border-radius:12px;border:1px solid rgba(255,180,171,0.2);background:rgba(255,180,171,0.05);display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;margin-bottom:16px">
+      <span class="material-symbols-outlined" style="color:#ffb4ab;font-size:18px">logout</span>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#ffb4ab;text-transform:uppercase;letter-spacing:0.1em">Cerrar sesión</span>
+    </button>
+  </div>
+  <nav class="bottom-nav">
+    <div class="flex justify-around items-center px-4 py-2">
+      <button class="nav-item" onclick="navigate('home')"><span class="material-symbols-outlined">grid_view</span><span class="label">Inicio</span></button>
+      <button class="nav-item" onclick="navigate('activity')"><span class="material-symbols-outlined">receipt_long</span><span class="label">Tarjetas</span></button>
+      <button class="nav-item" onclick="navigate('rewards')"><span class="material-symbols-outlined">redeem</span><span class="label">Rewards</span></button>
+      <button class="nav-item active" onclick="navigate('account')"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">person</span><span class="label">Perfil</span></button>
+    </div>
+  </nav>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     INSTALL BANNER
+═══════════════════════════════════════════ -->
+<div id="install-banner" style="display:none;position:fixed;bottom:80px;left:50%;transform:translateX(-50%);width:calc(100% - 32px);max-width:398px;z-index:100;background:#161616;border:1px solid rgba(0,255,136,0.25);border-radius:14px;padding:14px 16px;display:none">
+  <div class="flex items-center justify-between">
+    <div>
+      <p style="font-family:'Geist',sans-serif;font-size:14px;font-weight:700;color:#e5e2e1;margin-bottom:2px">Instalar V DeFi</p>
+      <p style="font-family:'Inter',sans-serif;font-size:12px;color:#888888">Agregar a pantalla de inicio</p>
+    </div>
+    <div class="flex gap-2">
+      <button onclick="dismissInstall()" style="padding:8px 12px;background:none;border:1px solid rgba(255,255,255,0.08);border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#888888;cursor:pointer">No</button>
+      <button onclick="installApp()" style="padding:8px 14px;background:#00FF88;border:none;border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#003919;font-weight:700;cursor:pointer">Instalar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ─── STATE ───────────────────────────────────
+let currentScreen = 'splash';
+let onboardingIndex = 0;
+let deferredInstall = null;
+let selectedCountry = 'mexico';
+let selectedDelivery = 'vanlink';
+
+const rates = { mexico: 17.45, usa: 1, europe: 0.92 };
+const currencies = { mexico: 'MXN', usa: 'USD', europe: 'EUR' };
+const rateLabels = { mexico: '1 USDC = 17.45 MXN', usa: '1 USDC = 1.00 USD', europe: '1 USDC = 0.92 EUR' };
+
+const transactions = [
+  {type:'in', icon:'link', label:'VanLink recibido', sub:'Hoy, 10:45 AM', amount:'+120.00 USDC', color:'#00FF88'},
+  {type:'out', icon:'send', label:'Enviado a Carlos', sub:'Ayer, 4:30 PM', amount:'-85.00 USDC', color:'#ffb4ab'},
+  {type:'in', icon:'credit_card', label:'Compra con tarjeta', sub:'13 May, 9:15 AM', amount:'+300.00 USDC', color:'#00FF88'},
+  {type:'vanlink', icon:'link', label:'VanLink a María', sub:'12 May, 3:00 PM', amount:'-50.00 USDC', color:'#ffb4ab'},
+  {type:'in', icon:'call_received', label:'Transferencia recibida', sub:'10 May, 11:20 AM', amount:'+250.00 USDC', color:'#00FF88'},
+  {type:'out', icon:'account_balance', label:'Retiro banco BBVA', sub:'9 May, 8:00 AM', amount:'-150.00 USDC', color:'#ffb4ab'},
+  {type:'vanlink', icon:'link', label:'VanLink recibido', sub:'8 May, 6:45 PM', amount:'+75.00 USDC', color:'#00FF88'},
+];
+
+// ─── ROUTER ──────────────────────────────────
+function navigate(screen) {
+  document.querySelectorAll('.screen').forEach(s => {
+    s.classList.remove('active');
+    s.classList.remove('fade-in');
+  });
+  const el = document.getElementById('screen-' + screen);
+  if (!el) return;
+  el.classList.add('active', 'fade-in');
+  currentScreen = screen;
+  window.scrollTo(0, 0);
+  if (screen === 'activity') renderActivity('all');
+}
+
+// ─── SPLASH ──────────────────────────────────
+window.addEventListener('load', () => {
+  const bar = document.getElementById('splash-bar');
+  requestAnimationFrame(() => { bar.style.width = '100%'; });
+  setTimeout(() => {
+    const visited = localStorage.getItem('vdefi-visited');
+    navigate(visited ? 'login' : 'onboarding');
+    localStorage.setItem('vdefi-visited', '1');
+  }, 2200);
+});
+
+// ─── ONBOARDING ──────────────────────────────
+function onboardingNext() {
+  const slides = document.querySelectorAll('.onboarding-slide');
+  const dots = document.querySelectorAll('.onboarding-dot');
+  if (onboardingIndex < slides.length - 1) {
+    slides[onboardingIndex].style.display = 'none';
+    onboardingIndex++;
+    slides[onboardingIndex].style.display = 'block';
+    dots.forEach((d, i) => {
+      d.classList.toggle('active', i === onboardingIndex);
+      d.style.width = i === onboardingIndex ? '24px' : '8px';
+    });
+    if (onboardingIndex === slides.length - 1) {
+      document.getElementById('onboarding-next-btn').textContent = 'Comenzar';
+    }
+  } else {
+    navigate('login');
+  }
+}
+
+// ─── LOGIN ───────────────────────────────────
+function loginWith(method) {
+  localStorage.setItem('vdefi-auth', method);
+  navigate('home');
+}
+
+// ─── SEND CALC ───────────────────────────────
+function updateSendCalc() {
+  const amt = parseFloat(document.getElementById('send-amount').value) || 0;
+  const fee = (amt * 0.01).toFixed(2);
+  const recv = ((amt - amt * 0.01) * rates[selectedCountry]).toFixed(2);
+  document.getElementById('send-fee').textContent = fee + ' USDC';
+  document.getElementById('send-recv').textContent = recv.replace(/\B(?=(\d{3})+(?!\d))/g, ',') + ' ' + currencies[selectedCountry];
+  document.getElementById('send-rate').textContent = rateLabels[selectedCountry];
+}
+
+function selectCountry(c) {
+  selectedCountry = c;
+  ['mexico','usa','europe','latam'].forEach(id => {
+    const el = document.getElementById('country-' + id);
+    if (el) el.style.border = id === c ? '1px solid rgba(0,255,136,0.35)' : '1px solid rgba(255,255,255,0.08)';
+  });
+  updateSendCalc();
+}
+
+function selectDelivery(d) {
+  selectedDelivery = d;
+  const vl = document.getElementById('delivery-vanlink');
+  const bk = document.getElementById('delivery-bank');
+  const rvl = document.getElementById('radio-vanlink');
+  const rbk = document.getElementById('radio-bank');
+  if (d === 'vanlink') {
+    vl.style.border = '1px solid rgba(0,255,136,0.25)'; vl.style.opacity = '1';
+    bk.style.border = '1px solid rgba(255,255,255,0.08)'; bk.style.opacity = '0.7';
+    rvl.innerHTML = '<div style="width:10px;height:10px;border-radius:50%;background:#00FF88"></div>';
+    rvl.style.borderColor = '#00FF88';
+    rbk.innerHTML = '';
+    rbk.style.borderColor = 'rgba(255,255,255,0.2)';
+  } else {
+    bk.style.border = '1px solid rgba(0,255,136,0.25)'; bk.style.opacity = '1';
+    vl.style.border = '1px solid rgba(255,255,255,0.08)'; vl.style.opacity = '0.7';
+    rbk.innerHTML = '<div style="width:10px;height:10px;border-radius:50%;background:#00FF88"></div>';
+    rbk.style.borderColor = '#00FF88';
+    rvl.innerHTML = '';
+    rvl.style.borderColor = 'rgba(255,255,255,0.2)';
+  }
+}
+
+// ─── VANLINK ─────────────────────────────────
+function updateVanlinkFee() {
+  const amt = parseFloat(document.getElementById('vanlink-amount').value) || 0;
+  document.getElementById('vanlink-fee').textContent = (amt * 0.0005).toFixed(4) + ' USDC';
+}
+
+function setExpiry(btn, val) {
+  document.querySelectorAll('#screen-vanlink button[onclick^="setExpiry"]').forEach(b => {
+    b.style.border = '1px solid rgba(255,255,255,0.08)';
+    b.style.background = 'none';
+    b.style.color = '#e5e2e1';
+  });
+  btn.style.border = '1px solid #00FF88';
+  btn.style.background = 'rgba(0,255,136,0.08)';
+  btn.style.color = '#00FF88';
+}
+
+function generateVanlink() {
+  const amt = document.getElementById('vanlink-amount').value || '0';
+  const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+  const id = Array.from({length: 7}, () => chars[Math.floor(Math.random() * chars.length)]).join('');
+  document.getElementById('generated-link').textContent = 'vdefi.com/vl/' + id;
+  navigate('send-confirm');
+}
+
+function generateReferralLink() {
+  const id = Math.random().toString(36).substr(2, 8);
+  if (navigator.share) {
+    navigator.share({ title: 'V DeFi', text: 'Únete a V DeFi y gana $25 USDC', url: 'https://vdefi.com/ref/' + id });
+  } else {
+    navigator.clipboard.writeText('https://vdefi.com/ref/' + id);
+    showToast('Link copiado al portapapeles');
+  }
+}
+
+// ─── ACTIVITY ────────────────────────────────
+function renderActivity(filter) {
+  const list = document.getElementById('activity-list');
+  if (!list) return;
+  const filtered = filter === 'all' ? transactions : transactions.filter(t => t.type === filter);
+  list.innerHTML = filtered.map(t => `
+    <div class="glass-card rounded-xl p-4" style="display:flex;align-items:center;justify-content:space-between;cursor:pointer">
+      <div style="display:flex;align-items:center;gap:14px">
+        <div style="width:40px;height:40px;border-radius:50%;background:#201f1f;display:flex;align-items:center;justify-content:center">
+          <span class="material-symbols-outlined" style="color:#00FF88;font-size:20px">${t.icon}</span>
+        </div>
+        <div>
+          <p style="font-family:'Inter',sans-serif;font-size:15px;color:#e5e2e1;font-weight:500">${t.label}</p>
+          <p style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#888888">${t.sub}</p>
+        </div>
+      </div>
+      <p style="font-family:'JetBrains Mono',monospace;font-size:13px;color:${t.color}">${t.amount}</p>
+    </div>
+  `).join('');
+}
+
+function filterActivity(type, btn) {
+  document.querySelectorAll('#screen-activity button[onclick^="filterActivity"]').forEach(b => {
+    b.style.background = 'rgba(255,255,255,0.05)';
+    b.style.color = '#888888';
+    b.style.border = '1px solid rgba(255,255,255,0.08)';
+  });
+  btn.style.background = '#00FF88';
+  btn.style.color = '#003919';
+  btn.style.border = 'none';
+  renderActivity(type);
+}
+
+// ─── MISC ─────────────────────────────────────
+function copyLink() {
+  const link = document.getElementById('generated-link').textContent;
+  navigator.clipboard.writeText(link).then(() => showToast('¡Link copiado!')).catch(() => showToast('Copia: ' + link));
+}
+
+function share(platform) {
+  const link = document.getElementById('generated-link').textContent;
+  const text = '¡Cóbrame a través de V DeFi! ' + link;
+  if (platform === 'whatsapp') window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank');
+  else if (platform === 'telegram') window.open('https://t.me/share/url?url=' + encodeURIComponent(link) + '&text=' + encodeURIComponent('¡Pago con V DeFi!'), '_blank');
+  else if (platform === 'email') window.open('mailto:?subject=Pago V DeFi&body=' + encodeURIComponent(text));
+}
+
+function showNotifications() { showToast('Sin notificaciones nuevas'); }
+
+function signOut() {
+  if (confirm('¿Cerrar sesión?')) {
+    localStorage.removeItem('vdefi-auth');
+    navigate('login');
+  }
+}
+
+function showToast(msg) {
+  const t = document.createElement('div');
+  t.style.cssText = 'position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:#161616;border:1px solid rgba(0,255,136,0.25);border-radius:10px;padding:10px 20px;font-family:JetBrains Mono,monospace;font-size:12px;color:#00FF88;z-index:999;white-space:nowrap;box-shadow:0 4px 20px rgba(0,0,0,0.4)';
+  t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 2500);
+}
+
+// ─── PWA INSTALL ─────────────────────────────
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  deferredInstall = e;
+  const banner = document.getElementById('install-banner');
+  banner.style.display = 'block';
+});
+
+function installApp() {
+  if (deferredInstall) {
+    deferredInstall.prompt();
+    deferredInstall.userChoice.then(() => { deferredInstall = null; dismissInstall(); });
+  }
+}
+
+function dismissInstall() {
+  document.getElementById('install-banner').style.display = 'none';
+}
+
+// ─── SERVICE WORKER ──────────────────────────
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').catch(() => {});
+}
+
+// ─── INIT SEND CALC ──────────────────────────
+document.addEventListener('DOMContentLoaded', updateSendCalc);
+</script>
+</body>
+</html>
