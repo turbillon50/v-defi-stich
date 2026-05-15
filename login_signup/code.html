@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=Inter:wght@100..900&amp;family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .glass-panel {
+      background: rgba(22, 22, 22, 0.6);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+    }
+    .neon-glow-hover:hover {
+      box-shadow: 0 0 20px rgba(0, 255, 136, 0.15);
+    }
+  </style>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-container-lowest": "#0e0e0e",
+            "outline-variant": "#3b4b3d",
+            "surface-container-low": "#1c1b1b",
+            "electric-emerald": "#00FF88",
+            "tertiary-fixed-dim": "#e5c364",
+            "on-error": "#690005",
+            "surface-variant": "#353534",
+            "tertiary": "#fffaf7",
+            "primary-container": "#00ff88",
+            "liquid-silver": "#E0E0E0",
+            "primary-fixed": "#60ff99",
+            "error": "#ffb4ab",
+            "background": "#131313",
+            "inverse-primary": "#006d37",
+            "on-primary": "#003919",
+            "primary-fixed-dim": "#00e479",
+            "on-primary-fixed": "#00210c",
+            "surface-elevated": "#161616",
+            "on-tertiary": "#3d2f00",
+            "surface-dim": "#131313",
+            "surface-tint": "#00e479",
+            "matte-obsidian": "#0A0A0A",
+            "on-primary-fixed-variant": "#005228",
+            "surface-container-highest": "#353534",
+            "tertiary-fixed": "#ffe08d",
+            "surface-bright": "#3a3939",
+            "muted-gray": "#888888",
+            "outline": "#849585",
+            "tertiary-container": "#ffdb79",
+            "on-tertiary-fixed-variant": "#584400",
+            "on-secondary-fixed-variant": "#454747",
+            "on-secondary": "#2f3131",
+            "secondary": "#c6c6c6",
+            "on-primary-container": "#007139",
+            "on-surface-variant": "#b9cbb9",
+            "on-surface": "#e5e2e1",
+            "border-glass": "rgba(255, 255, 255, 0.08)",
+            "secondary-fixed-dim": "#c6c6c6",
+            "on-secondary-container": "#b5b5b5",
+            "inverse-on-surface": "#313030",
+            "surface": "#131313",
+            "primary": "#f1ffef",
+            "inverse-surface": "#e5e2e1",
+            "surface-container": "#201f1f",
+            "on-secondary-fixed": "#1a1c1c",
+            "on-tertiary-fixed": "#241a00",
+            "on-background": "#e5e2e1",
+            "on-error-container": "#ffdad6",
+            "secondary-fixed": "#e2e2e2",
+            "error-container": "#93000a",
+            "on-tertiary-container": "#795f01",
+            "secondary-container": "#454747",
+            "surface-container-high": "#2a2a2a"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "stack-md": "16px",
+            "gutter": "24px",
+            "unit": "4px",
+            "margin-safe": "32px",
+            "stack-lg": "32px",
+            "stack-sm": "8px"
+          },
+          "fontFamily": {
+            "body-md": ["Inter"],
+            "display-lg": ["Geist"],
+            "body-sm": ["Inter"],
+            "headline-lg": ["Geist"],
+            "label-mono": ["JetBrains Mono"],
+            "headline-lg-mobile": ["Geist"]
+          },
+          "fontSize": {
+            "body-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400"}],
+            "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+            "body-sm": ["14px", {"lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400"}],
+            "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+            "label-mono": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+            "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-matte-obsidian text-on-surface selection:bg-electric-emerald/30 min-h-screen flex flex-col font-body-md overflow-x-hidden">
+<!-- Background Ambient Glow -->
+<div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+<div class="absolute -top-[20%] -left-[10%] w-[60%] h-[60%] rounded-full bg-electric-emerald/5 blur-[120px]"></div>
+<div class="absolute top-[40%] -right-[15%] w-[50%] h-[50%] rounded-full bg-electric-emerald/5 blur-[100px]"></div>
+</div>
+<header class="fixed top-0 w-full z-50 h-16 flex items-center justify-center px-gutter">
+<div class="font-headline-lg-mobile text-electric-emerald tracking-tighter">V DeFi</div>
+</header>
+<main class="relative z-10 flex-grow flex items-center justify-center px-gutter py-24">
+<div class="w-full max-w-[400px] space-y-stack-lg">
+<!-- Content Canvas -->
+<section class="text-center space-y-unit">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface tracking-tight">Secure your wealth</h1>
+<p class="font-body-sm text-body-sm text-muted-gray">Manage your global assets from one private command center.</p>
+</section>
+<!-- Interaction Group -->
+<div class="glass-panel p-stack-lg rounded-xl border border-border-glass space-y-stack-md">
+<!-- Social Auth -->
+<div class="space-y-stack-sm">
+<button class="w-full h-12 flex items-center justify-center gap-stack-sm bg-surface-elevated/50 border border-border-glass rounded-lg font-body-md text-on-surface hover:bg-surface-elevated transition-all duration-200 neon-glow-hover group">
+<svg class="w-5 h-5 opacity-80 group-hover:opacity-100" fill="currentColor" viewbox="0 0 24 24">
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"></path>
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 12-5.38z" fill="#EA4335"></path>
+</svg>
+<span class="text-liquid-silver">Continue with Google</span>
+</button>
+<button class="w-full h-12 flex items-center justify-center gap-stack-sm bg-surface-elevated/50 border border-border-glass rounded-lg font-body-md text-on-surface hover:bg-surface-elevated transition-all duration-200 neon-glow-hover group">
+<svg class="w-5 h-5 fill-current opacity-80 group-hover:opacity-100" viewbox="0 0 24 24">
+<path d="M17.05 20.28c-.96.95-2.21 1.72-3.73 1.72-1.39 0-2.31-.58-3.32-.58-1.02 0-2.14.58-3.35.58-2.2 0-4.17-2.18-4.17-5.59 0-3.34 2.1-5.12 4.1-5.12 1.07 0 1.88.42 2.65.42.75 0 1.4-.41 2.51-.41 1.48 0 2.57.73 3.19 1.63-3.1 1.34-2.6 5.56.5 6.78-.34.98-.82 1.94-1.4 2.57zM12.03 7.25c-.02-2.11 1.61-3.95 3.51-4.08.18 2.34-2.15 4.31-3.51 4.08z"></path>
+</svg>
+<span class="text-liquid-silver">Continue with Apple</span>
+</button>
+</div>
+<div class="relative flex items-center py-unit">
+<div class="flex-grow border-t border-border-glass"></div>
+<span class="flex-shrink mx-4 font-label-mono text-label-mono text-muted-gray">OR</span>
+<div class="flex-grow border-t border-border-glass"></div>
+</div>
+<!-- Email Login -->
+<div class="space-y-stack-sm">
+<div class="relative">
+<input class="w-full h-12 bg-matte-obsidian border-b border-border-glass text-on-surface px-unit font-body-md placeholder:text-muted-gray focus:outline-none focus:border-electric-emerald focus:ring-0 transition-colors duration-300" placeholder="name@email.com" type="email"/>
+</div>
+<button class="w-full h-12 bg-electric-emerald text-matte-obsidian font-headline-lg-mobile text-body-md rounded-lg hover:shadow-[0_0_24px_rgba(0,255,136,0.2)] active:scale-[0.98] transition-all duration-200">
+            Continue with Email
+          </button>
+</div>
+</div>
+<!-- Legal footer -->
+<footer class="text-center px-stack-md">
+<p class="font-body-sm text-body-sm text-muted-gray">
+          By continuing, you agree to our 
+          <a class="text-liquid-silver underline underline-offset-4 decoration-border-glass hover:decoration-electric-emerald transition-colors" href="#">Terms of Service</a> 
+          and 
+          <a class="text-liquid-silver underline underline-offset-4 decoration-border-glass hover:decoration-electric-emerald transition-colors" href="#">Privacy Policy</a>.
+        </p>
+</footer>
+</div>
+</main>
+<!-- Side Decoration (Hidden on small mobile) -->
+<aside class="hidden lg:block fixed left-margin-safe top-1/2 -translate-y-1/2 space-y-stack-lg">
+<div class="space-y-unit">
+<div class="w-1 h-8 bg-electric-emerald rounded-full"></div>
+<div class="w-1 h-16 bg-surface-container-high rounded-full"></div>
+<div class="w-1 h-8 bg-surface-container-high rounded-full"></div>
+</div>
+<div class="font-label-mono text-label-mono text-muted-gray [writing-mode:vertical-lr] rotate-180 uppercase tracking-widest opacity-40">
+      System v4.02 // Secure Node
+    </div>
+</aside>
+<!-- Visual Anchor (Desktop background graphic) -->
+<div class="hidden lg:block fixed right-0 bottom-0 w-1/3 h-2/3 pointer-events-none opacity-20">
+<img alt="Fintech abstract" class="w-full h-full object-cover grayscale mix-blend-screen" data-alt="A highly sophisticated 3D render of interconnected digital strands and node structures in a dark, cinematic space. The nodes emit a soft electric emerald green glow against a deep matte obsidian background. The aesthetic is clean, technical, and premium, resembling a high-stakes financial data network. Low-key lighting creates deep shadows and highlights a glass-like transparency in the geometry." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbDwQH3wUmA9oMyC2uTxpdLs_LtG0JAXgU0x-y1KadB-ISROttLHjTRc4KXUYSZ7wUwerfJoSc2_HOEBvr5UGYIiNWO1gbzGfEU0HC8gYRWpKA2np2Sbuu8_Anv4NYYN1xciq-xZ2PjYVIimoXLF3ufKDQuZFxi4Zm10azH0oA8V0UvCNu-0_6t1x_WhFp0Trddo_mroi689WidDGuvfxlkVOyLPWQGz-s2by1myNhXg-Rhb7_1VTBCBO5FSlpI_Sdfrq8sFxSk-k"/>
+</div>
+</body></html>

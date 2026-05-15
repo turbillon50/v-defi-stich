@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@400;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .emerald-glow {
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.15);
+        }
+        .glass-blur {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-lowest": "#0e0e0e",
+                      "outline-variant": "#3b4b3d",
+                      "surface-container-low": "#1c1b1b",
+                      "electric-emerald": "#00FF88",
+                      "tertiary-fixed-dim": "#e5c364",
+                      "on-error": "#690005",
+                      "surface-variant": "#353534",
+                      "tertiary": "#fffaf7",
+                      "primary-container": "#00ff88",
+                      "liquid-silver": "#E0E0E0",
+                      "primary-fixed": "#60ff99",
+                      "error": "#ffb4ab",
+                      "background": "#131313",
+                      "inverse-primary": "#006d37",
+                      "on-primary": "#003919",
+                      "primary-fixed-dim": "#00e479",
+                      "on-primary-fixed": "#00210c",
+                      "surface-elevated": "#161616",
+                      "on-tertiary": "#3d2f00",
+                      "surface-dim": "#131313",
+                      "surface-tint": "#00e479",
+                      "matte-obsidian": "#0A0A0A",
+                      "on-primary-fixed-variant": "#005228",
+                      "surface-container-highest": "#353534",
+                      "tertiary-fixed": "#ffe08d",
+                      "surface-bright": "#3a3939",
+                      "muted-gray": "#888888",
+                      "outline": "#849585",
+                      "tertiary-container": "#ffdb79",
+                      "on-tertiary-fixed-variant": "#584400",
+                      "on-secondary-fixed-variant": "#454747",
+                      "on-secondary": "#2f3131",
+                      "secondary": "#c6c6c6",
+                      "on-primary-container": "#007139",
+                      "on-surface-variant": "#b9cbb9",
+                      "on-surface": "#e5e2e1",
+                      "border-glass": "rgba(255, 255, 255, 0.08)",
+                      "secondary-fixed-dim": "#c6c6c6",
+                      "on-secondary-container": "#b5b5b5",
+                      "inverse-on-surface": "#313030",
+                      "surface": "#131313",
+                      "primary": "#f1ffef",
+                      "inverse-surface": "#e5e2e1",
+                      "surface-container": "#201f1f",
+                      "on-secondary-fixed": "#1a1c1c",
+                      "on-tertiary-fixed": "#241a00",
+                      "on-background": "#e5e2e1",
+                      "on-error-container": "#ffdad6",
+                      "secondary-fixed": "#e2e2e2",
+                      "error-container": "#93000a",
+                      "on-tertiary-container": "#795f01",
+                      "secondary-container": "#454747",
+                      "surface-container-high": "#2a2a2a"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "stack-md": "16px",
+                      "gutter": "24px",
+                      "unit": "4px",
+                      "margin-safe": "32px",
+                      "stack-lg": "32px",
+                      "stack-sm": "8px"
+              },
+              "fontFamily": {
+                      "body-md": ["Inter"],
+                      "display-lg": ["Geist"],
+                      "body-sm": ["Inter"],
+                      "headline-lg": ["Geist"],
+                      "label-mono": ["JetBrains Mono"],
+                      "headline-lg-mobile": ["Geist"]
+              },
+              "fontSize": {
+                      "body-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                      "body-sm": ["14px", {"lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "label-mono": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-matte-obsidian text-on-surface font-body-md selection:bg-electric-emerald/30">
+<!-- TopAppBar from JSON -->
+<header class="fixed top-0 w-full z-50 bg-matte-obsidian/80 backdrop-blur-md border-b border-border-glass">
+<div class="flex items-center justify-between px-gutter h-16 w-full max-w-md mx-auto">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-high overflow-hidden border border-border-glass">
+<img alt="User profile avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7YT2Go_jApM-xVJB3hoVqk75lxp6-De_kwiO1cw0ztmwRpvtLEKYteJiasu-hnpJpbBKgjYNKKPe-_PsTNqX-SOkrMSugmwVDqZrezEruomAgEHcNwgT0C-qwHKYKRVNg13GW4N6w0RNato5y02oHc1uXG4Q2HDUHF_EU_9B8q5umUZCovf1b6e-dSHTzqEo4DG_KILOGLUH9jP0LiWyNIsaaPShrdEeUyYw_VO3Bn4IlLPwB2JcOfgMhddc-LhYAfIY5XnOaS5A"/>
+</div>
+<span class="font-headline-lg-mobile text-electric-emerald tracking-tighter">V DeFi</span>
+</div>
+<button class="text-electric-emerald active:scale-95 duration-150 hover:text-electric-emerald transition-colors duration-200">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</div>
+</header>
+<main class="pt-24 pb-32 px-gutter w-full max-w-md mx-auto">
+<!-- Flow Header -->
+<div class="mb-stack-lg">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Send Globally</h1>
+<p class="font-body-sm text-body-sm text-muted-gray mt-unit">Transfer assets instantly across 50+ countries.</p>
+</div>
+<!-- Country Selection (Bento-style Pills) -->
+<section class="mb-stack-lg">
+<label class="font-label-mono text-label-mono text-muted-gray mb-stack-sm block">SELECT RECIPIENT COUNTRY</label>
+<div class="grid grid-cols-2 gap-stack-sm">
+<button class="flex items-center gap-3 p-3 bg-surface-elevated border border-electric-emerald/30 rounded-xl emerald-glow transition-all">
+<img alt="United Kingdom" class="w-6 h-6 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtfcTQiqckKBxMHBqk1OtajnysjLwOMHgcrlbiQlPE_R7csckXN_xsxt_a04EhKWlc-Nt08cKy5eyx3fXcHWaT6atYr2dsLVmapkxiBwgrIiJSF4ZvreCN0ImFrLS2ji-WTV6jwxdM8gEmkX1qGzP4Jy87YH2DnTD7UuqwGeJAMA1bqZxTR0WjGADTL81Evr46VyH0i9FGjfAlMwGwMiA5qlUfmCIjPyM1hHTD96Cc7985ikjBu-6nvYJeDEIem0RHdaaPJRhYfR0"/>
+<span class="font-body-md text-body-md text-on-surface">UK</span>
+</button>
+<button class="flex items-center gap-3 p-3 bg-surface-elevated border border-border-glass rounded-xl hover:border-muted-gray transition-all">
+<img alt="United States" class="w-6 h-6 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwMuAX8_vf-F9vaAQKTcpwc_VqB2rlHGyKwv0AHtWaZ0Od5Zt07-vv7BAsEyUc2JibnIzUBohambwkKN2oMUcbXGPS8kA-hFtm7p90LbvwzsyfIuW02hf8S1ag1kkQjsOdPpGdDzmx2GbcX-htaOR0TPptUDnVsMxWw33tqOx92BG8CU1GqmifiemhCiyb8mfAyYd2FyiZ6-Zif38FZR8yitOdPUjjHtyWWiRzSvA_Qm6-83r8vKmdgjzd2xJh8haDqu4ynC5ZDPU"/>
+<span class="font-body-md text-body-md text-on-surface">USA</span>
+</button>
+<button class="flex items-center gap-3 p-3 bg-surface-elevated border border-border-glass rounded-xl hover:border-muted-gray transition-all">
+<img alt="Europe" class="w-6 h-6 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAddU6-LApzwqbzNXGPFLZyDBRFLEPFCpSdFwSwymQXE4derrQFcGqqqv3nJupd7xqkoUOT5FeWJlg8iQQ57kBE5ONCeT-5j41-x25lV2eGTLsd9Iop3FPVUxbvqY2NMHk1ZCGM21K65L6ZqZqjWvq2jAzIscqEulOfJ8OCl9-NU-bGnvkYYn_FzuOg9hF6YEcZearxCnyt_p7rJquDn-zQKwlRn3enX1stC6uJHMYM-cue2fYiln37rAIZPII6vMefOevpmY_JhEU"/>
+<span class="font-body-md text-body-md text-on-surface">Europe</span>
+</button>
+<button class="flex items-center gap-3 p-3 bg-surface-elevated border border-border-glass rounded-xl hover:border-muted-gray transition-all">
+<span class="material-symbols-outlined text-muted-gray" data-icon="public">public</span>
+<span class="font-body-md text-body-md text-muted-gray">More</span>
+</button>
+</div>
+</section>
+<!-- Amount Input Section -->
+<section class="mb-stack-lg bg-surface-elevated border border-border-glass p-gutter rounded-xl">
+<div class="flex justify-between items-center mb-stack-sm">
+<label class="font-label-mono text-label-mono text-muted-gray">YOU SEND</label>
+<span class="font-label-mono text-label-mono text-electric-emerald">BAL: 12,450.00 USDC</span>
+</div>
+<div class="flex items-baseline gap-2 mb-stack-md">
+<span class="font-display-lg text-4xl text-on-surface font-bold">2,500.00</span>
+<span class="font-headline-lg-mobile text-electric-emerald">USDC</span>
+</div>
+<!-- Real-time Conversion Preview -->
+<div class="relative py-stack-md">
+<div class="absolute left-4 top-0 bottom-0 w-px bg-border-glass"></div>
+<div class="flex items-center gap-4 ml-8 mb-4">
+<div class="w-2 h-2 rounded-full bg-muted-gray"></div>
+<div class="flex-1 flex justify-between font-label-mono text-label-mono text-muted-gray">
+<span>FEE (0.5%)</span>
+<span>12.50 USDC</span>
+</div>
+</div>
+<div class="flex items-center gap-4 ml-8">
+<div class="w-2 h-2 rounded-full bg-electric-emerald emerald-glow"></div>
+<div class="flex-1 flex justify-between items-center">
+<span class="font-label-mono text-label-mono text-muted-gray">RECIPIENT GETS</span>
+<span class="font-body-md text-body-md text-on-surface font-bold">1,962.40 GBP</span>
+</div>
+</div>
+</div>
+<div class="mt-stack-md pt-stack-md border-t border-border-glass flex justify-between items-center">
+<span class="font-label-mono text-label-mono text-muted-gray">EXCHANGE RATE</span>
+<span class="font-label-mono text-label-mono text-on-surface">1 USDC = 0.7849 GBP</span>
+</div>
+</section>
+<!-- Delivery Method -->
+<section class="mb-stack-lg">
+<label class="font-label-mono text-label-mono text-muted-gray mb-stack-sm block">DELIVERY METHOD</label>
+<div class="space-y-stack-sm">
+<div class="flex items-center justify-between p-4 bg-surface-elevated border border-electric-emerald/20 rounded-xl">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-electric-emerald" data-icon="account_balance">account_balance</span>
+<div>
+<p class="font-body-md text-body-md text-on-surface">Bank Account</p>
+<p class="font-body-sm text-body-sm text-muted-gray">Instant delivery</p>
+</div>
+</div>
+<div class="w-5 h-5 rounded-full border-2 border-electric-emerald flex items-center justify-center">
+<div class="w-2.5 h-2.5 rounded-full bg-electric-emerald"></div>
+</div>
+</div>
+<div class="flex items-center justify-between p-4 bg-surface-container-lowest border border-border-glass rounded-xl opacity-60">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-muted-gray" data-icon="credit_card">credit_card</span>
+<div>
+<p class="font-body-md text-body-md text-on-surface">Debit / Credit Card</p>
+<p class="font-body-sm text-body-sm text-muted-gray">1-2 business days</p>
+</div>
+</div>
+<div class="w-5 h-5 rounded-full border-2 border-border-glass"></div>
+</div>
+</div>
+</section>
+<!-- Hero Graphic Placeholder (Decorative) -->
+<div class="w-full h-32 rounded-xl overflow-hidden mb-stack-lg border border-border-glass">
+<img class="w-full h-full object-cover grayscale opacity-40 hover:grayscale-0 transition-all duration-700" data-alt="A sleek, high-end fintech digital illustration showing abstract interconnected nodes glowing in electric emerald green against a deep matte black background. The composition uses thin lines and soft lens flares to create a cinematic sense of global connectivity and high-stakes precision. The atmosphere is sophisticated and technologically superior, reflecting a premium wealth management command center." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNNTyv3lvXeitiJeQsBGHxUkrLn1h9KLfZV1EaWTmHJXoSkVNmqGS4EHyla_juex2BaMtZ5KAB8nXtNCg5CB1z0MOpf1ztHdk8cfBwrABX68zh6TFAKSJvptdp9qbIiM6IE3cbLRFRcoWAPb3x46EzzSDR1O6MEorvAQfKlxCTXFE_RPRb4sCdkGoE8B-U9nv9AUjyFXGyt5Z_SYX9t92GbcJlwgxJvAp1brVzP40puVW5n6Jgowl8VxaZ4vW-nFZ10ic08AQTxRg"/>
+</div>
+<!-- Next Button -->
+<button class="w-full py-4 bg-electric-emerald text-matte-obsidian font-headline-lg-mobile text-lg rounded-xl font-bold emerald-glow hover:scale-[1.02] active:scale-95 transition-all duration-200">
+            Next Step
+        </button>
+</main>
+<!-- BottomNavBar Suppressed as per Task-Focused Journey rule -->
+</body></html>

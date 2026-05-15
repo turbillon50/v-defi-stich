@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-lowest": "#0e0e0e",
+                    "outline-variant": "#3b4b3d",
+                    "surface-container-low": "#1c1b1b",
+                    "electric-emerald": "#00FF88",
+                    "tertiary-fixed-dim": "#e5c364",
+                    "on-error": "#690005",
+                    "surface-variant": "#353534",
+                    "tertiary": "#fffaf7",
+                    "primary-container": "#00ff88",
+                    "liquid-silver": "#E0E0E0",
+                    "primary-fixed": "#60ff99",
+                    "error": "#ffb4ab",
+                    "background": "#131313",
+                    "inverse-primary": "#006d37",
+                    "on-primary": "#003919",
+                    "primary-fixed-dim": "#00e479",
+                    "on-primary-fixed": "#00210c",
+                    "surface-elevated": "#161616",
+                    "on-tertiary": "#3d2f00",
+                    "surface-dim": "#131313",
+                    "surface-tint": "#00e479",
+                    "matte-obsidian": "#0A0A0A",
+                    "on-primary-fixed-variant": "#005228",
+                    "surface-container-highest": "#353534",
+                    "tertiary-fixed": "#ffe08d",
+                    "surface-bright": "#3a3939",
+                    "muted-gray": "#888888",
+                    "outline": "#849585",
+                    "tertiary-container": "#ffdb79",
+                    "on-tertiary-fixed-variant": "#584400",
+                    "on-secondary-fixed-variant": "#454747",
+                    "on-secondary": "#2f3131",
+                    "secondary": "#c6c6c6",
+                    "on-primary-container": "#007139",
+                    "on-surface-variant": "#b9cbb9",
+                    "on-surface": "#e5e2e1",
+                    "border-glass": "rgba(255, 255, 255, 0.08)",
+                    "secondary-fixed-dim": "#c6c6c6",
+                    "on-secondary-container": "#b5b5b5",
+                    "inverse-on-surface": "#313030",
+                    "surface": "#131313",
+                    "primary": "#f1ffef",
+                    "inverse-surface": "#e5e2e1",
+                    "surface-container": "#201f1f",
+                    "on-secondary-fixed": "#1a1c1c",
+                    "on-tertiary-fixed": "#241a00",
+                    "on-background": "#e5e2e1",
+                    "on-error-container": "#ffdad6",
+                    "secondary-fixed": "#e2e2e2",
+                    "error-container": "#93000a",
+                    "on-tertiary-container": "#795f01",
+                    "secondary-container": "#454747",
+                    "surface-container-high": "#2a2a2a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-md": "16px",
+                    "gutter": "24px",
+                    "unit": "4px",
+                    "margin-safe": "32px",
+                    "stack-lg": "32px",
+                    "stack-sm": "8px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "display-lg": ["Geist"],
+                    "body-sm": ["Inter"],
+                    "headline-lg": ["Geist"],
+                    "label-mono": ["JetBrains Mono"],
+                    "headline-lg-mobile": ["Geist"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "label-mono": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(22, 22, 22, 0.4);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .emerald-glow {
+            box-shadow: 0 0 60px 10px rgba(0, 255, 136, 0.15);
+        }
+        .emerald-bloom {
+            filter: drop-shadow(0 0 12px rgba(0, 255, 136, 0.4));
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-matte-obsidian text-on-surface font-body-md antialiased min-h-screen flex flex-col items-center">
+<!-- TopAppBar -->
+<header class="bg-matte-obsidian/80 backdrop-blur-md text-electric-emerald fixed top-0 w-full z-50 border-b border-border-glass">
+<div class="flex items-center justify-between px-gutter h-16 w-full max-w-md mx-auto">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-border-glass flex items-center justify-center overflow-hidden">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A highly detailed 3D avatar of a professional fintech user, featuring sleek lighting and a modern aesthetic. The character is set against a dark, matte obsidian background with subtle electric emerald accents. The mood is high-end, sophisticated, and technological." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2c8fsdJSsTl5N_3dVRux4JzRhWNPW_HgLdA35HvtHuQnpaw2ZppyPsDB71kUbf9RLClylKDv_t2y45kKwps1UTfaoZYLShcE-wRegy4GBi3e3yfn2yry7lC1OCDvPy9EGPMmgr_8As1HTkQK2L2W_T3gqKQzhBZbe0r9nax7NpyJhbhL6Zc9kAwicNu22z_f8jdJEQNKra3coXzVVW7GT_J7ROtUoZTh8lxDtSQV9o57pzPdf9Oy9s0EJrXc-JkyxxjegTIiaL-A"/>
+</div>
+<span class="font-headline-lg-mobile text-headline-lg-mobile text-electric-emerald tracking-tighter">V DeFi</span>
+</div>
+<button class="material-symbols-outlined text-muted-gray hover:text-electric-emerald transition-colors duration-200">
+                notifications
+            </button>
+</div>
+</header>
+<!-- Main Content: Success Canvas -->
+<main class="flex-1 w-full max-w-md mx-auto px-gutter pt-32 pb-32 flex flex-col items-center justify-center relative overflow-hidden">
+<!-- Background Lighting -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-electric-emerald/5 blur-[120px] rounded-full pointer-events-none"></div>
+<!-- Success Animation Placeholder / Glow Checkmark -->
+<div class="relative mb-stack-lg">
+<div class="w-24 h-24 rounded-full border-2 border-electric-emerald flex items-center justify-center emerald-glow bg-electric-emerald/10">
+<span class="material-symbols-outlined text-[48px] text-electric-emerald emerald-bloom" style="font-variation-settings: 'wght' 700;">
+                    check
+                </span>
+</div>
+</div>
+<!-- Headline -->
+<div class="text-center mb-stack-lg">
+<h1 class="font-display-lg text-headline-lg-mobile text-on-surface mb-unit">Link Generated!</h1>
+<p class="font-body-sm text-muted-gray">Your premium VanLink is active and ready to share.</p>
+</div>
+<!-- Link Preview Card -->
+<div class="w-full glass-card rounded-xl p-stack-md mb-stack-lg flex items-center justify-between group">
+<div class="flex flex-col">
+<span class="font-label-mono text-label-mono text-muted-gray uppercase mb-1">Your Link</span>
+<span class="font-label-mono text-body-md text-electric-emerald">vdefi.link/x8j3...</span>
+</div>
+<button class="h-10 px-4 bg-surface-container-high rounded-lg text-on-surface font-label-mono text-label-mono hover:bg-surface-container-highest transition-all duration-200 border border-border-glass active:scale-95">
+                COPY LINK
+            </button>
+</div>
+<!-- Share Options Grid -->
+<div class="w-full grid grid-cols-3 gap-stack-md mb-stack-lg">
+<!-- WhatsApp -->
+<button class="glass-card rounded-xl py-stack-md flex flex-col items-center justify-center gap-2 hover:bg-surface-container-low transition-colors duration-200 active:scale-95">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface" data-icon="chat_bubble">chat_bubble</span>
+</div>
+<span class="font-label-mono text-label-mono text-muted-gray">WhatsApp</span>
+</button>
+<!-- Telegram -->
+<button class="glass-card rounded-xl py-stack-md flex flex-col items-center justify-center gap-2 hover:bg-surface-container-low transition-colors duration-200 active:scale-95">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface" data-icon="send">send</span>
+</div>
+<span class="font-label-mono text-label-mono text-muted-gray">Telegram</span>
+</button>
+<!-- Email -->
+<button class="glass-card rounded-xl py-stack-md flex flex-col items-center justify-center gap-2 hover:bg-surface-container-low transition-colors duration-200 active:scale-95">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface" data-icon="mail">mail</span>
+</div>
+<span class="font-label-mono text-label-mono text-muted-gray">Email</span>
+</button>
+</div>
+<!-- Primary CTA -->
+<button class="w-full h-14 bg-electric-emerald rounded-lg text-matte-obsidian font-headline-lg-mobile text-body-md hover:brightness-110 shadow-[0_0_24px_rgba(0,255,136,0.2)] transition-all duration-200 active:scale-[0.98]">
+            Go to Dashboard
+        </button>
+</main>
+<!-- BottomNavBar -->
+<nav class="bg-matte-obsidian/90 backdrop-blur-xl fixed bottom-0 w-full z-50 rounded-t-xl border-t border-border-glass shadow-[0_-8px_24px_rgba(0,255,136,0.05)]">
+<div class="flex justify-around items-center px-gutter py-3 w-full max-w-md mx-auto pb-safe">
+<button class="flex flex-col items-center justify-center text-muted-gray space-y-unit hover:text-liquid-silver group">
+<span class="material-symbols-outlined group-active:scale-110 duration-200 ease-out" data-icon="grid_view">grid_view</span>
+<span class="font-label-mono text-label-mono">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-electric-emerald space-y-unit group">
+<span class="material-symbols-outlined group-active:scale-110 duration-200 ease-out" data-icon="receipt_long">receipt_long</span>
+<span class="font-label-mono text-label-mono">Activity</span>
+</button>
+<button class="flex flex-col items-center justify-center text-muted-gray space-y-unit hover:text-liquid-silver group">
+<span class="material-symbols-outlined group-active:scale-110 duration-200 ease-out" data-icon="redeem">redeem</span>
+<span class="font-label-mono text-label-mono">Rewards</span>
+</button>
+<button class="flex flex-col items-center justify-center text-muted-gray space-y-unit hover:text-liquid-silver group">
+<span class="material-symbols-outlined group-active:scale-110 duration-200 ease-out" data-icon="person">person</span>
+<span class="font-label-mono text-label-mono">Account</span>
+</button>
+</div>
+</nav>
+</body></html>

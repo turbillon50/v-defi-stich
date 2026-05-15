@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-lowest": "#0e0e0e",
+                    "outline-variant": "#3b4b3d",
+                    "surface-container-low": "#1c1b1b",
+                    "electric-emerald": "#00FF88",
+                    "tertiary-fixed-dim": "#e5c364",
+                    "on-error": "#690005",
+                    "surface-variant": "#353534",
+                    "tertiary": "#fffaf7",
+                    "primary-container": "#00ff88",
+                    "liquid-silver": "#E0E0E0",
+                    "primary-fixed": "#60ff99",
+                    "error": "#ffb4ab",
+                    "background": "#131313",
+                    "inverse-primary": "#006d37",
+                    "on-primary": "#003919",
+                    "primary-fixed-dim": "#00e479",
+                    "on-primary-fixed": "#00210c",
+                    "surface-elevated": "#161616",
+                    "on-tertiary": "#3d2f00",
+                    "surface-dim": "#131313",
+                    "surface-tint": "#00e479",
+                    "matte-obsidian": "#0A0A0A",
+                    "on-primary-fixed-variant": "#005228",
+                    "surface-container-highest": "#353534",
+                    "tertiary-fixed": "#ffe08d",
+                    "surface-bright": "#3a3939",
+                    "muted-gray": "#888888",
+                    "outline": "#849585",
+                    "tertiary-container": "#ffdb79",
+                    "on-tertiary-fixed-variant": "#584400",
+                    "on-secondary-fixed-variant": "#454747",
+                    "on-secondary": "#2f3131",
+                    "secondary": "#c6c6c6",
+                    "on-primary-container": "#007139",
+                    "on-surface-variant": "#b9cbb9",
+                    "on-surface": "#e5e2e1",
+                    "border-glass": "rgba(255, 255, 255, 0.08)",
+                    "secondary-fixed-dim": "#c6c6c6",
+                    "on-secondary-container": "#b5b5b5",
+                    "inverse-on-surface": "#313030",
+                    "surface": "#131313",
+                    "primary": "#f1ffef",
+                    "inverse-surface": "#e5e2e1",
+                    "surface-container": "#201f1f",
+                    "on-secondary-fixed": "#1a1c1c",
+                    "on-tertiary-fixed": "#241a00",
+                    "on-background": "#e5e2e1",
+                    "on-error-container": "#ffdad6",
+                    "secondary-fixed": "#e2e2e2",
+                    "error-container": "#93000a",
+                    "on-tertiary-container": "#795f01",
+                    "secondary-container": "#454747",
+                    "surface-container-high": "#2a2a2a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-md": "16px",
+                    "gutter": "24px",
+                    "unit": "4px",
+                    "margin-safe": "32px",
+                    "stack-lg": "32px",
+                    "stack-sm": "8px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "display-lg": ["Geist"],
+                    "body-sm": ["Inter"],
+                    "headline-lg": ["Geist"],
+                    "label-mono": ["JetBrains Mono"],
+                    "headline-lg-mobile": ["Geist"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "label-mono": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .metallic-shimmer {
+            background: linear-gradient(110deg, #E0E0E0 30%, #FFFFFF 50%, #E0E0E0 70%);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .emerald-glow {
+            filter: drop-shadow(0 0 20px rgba(0, 255, 136, 0.15));
+        }
+        body {
+            background-color: #0A0A0A;
+            color: #e5e2e1;
+            -webkit-font-smoothing: antialiased;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-body-md min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="bg-matte-obsidian/80 backdrop-blur-md fixed top-0 w-full z-50 border-b border-border-glass">
+<div class="flex items-center justify-between px-gutter h-16 w-full max-w-md mx-auto">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-container-high border border-border-glass">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A close-up, high-detail portrait of a sophisticated man with a modern haircut, looking off-camera. The lighting is cinematic and moody, with deep blacks and soft highlights reflecting the dark fintech UI aesthetic. The background is a minimalist, out-of-focus urban environment with subtle teal and emerald accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtas_SRUiv_cQ0cCeXSYymu2-npg-jD-wHv-FoSOyvICXxyjNFqZYCSuFYHXpYApkbd31Cp4Vf7G89z2fEAv7j7TC0tKf91PoYTQbpkEMwumBN4en9tVv746WVMEtvOjg2c7A-hGJ4VPucaB0K4qpbV0mxENIBIc0VsrHzMW1GNI_sC8pd3zOOyxWDuhWbmOoYRyOHd_Zt0EsS-0vOwBkTiPRZD-Z7eZYxaCBmJRcIPmoKpCG8S-OpMRAhqapNEAOdXDAvoNtl4k0"/>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-electric-emerald tracking-tighter">V DeFi</h1>
+</div>
+<button class="text-muted-gray hover:text-electric-emerald transition-colors duration-200">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</div>
+</header>
+<main class="max-w-md mx-auto px-gutter pt-24 space-y-stack-lg">
+<!-- Total Balance Card (Apple Wallet Style) -->
+<section class="relative group">
+<div class="absolute -inset-1 bg-electric-emerald/10 blur-2xl rounded-[2rem] opacity-50 group-hover:opacity-100 transition duration-1000"></div>
+<div class="relative bg-surface-elevated border border-border-glass rounded-[2rem] p-8 emerald-glow flex flex-col justify-between min-h-[220px] overflow-hidden">
+<!-- Abstract Texture Overlay -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-electric-emerald/5 to-transparent rounded-full -mr-20 -mt-20"></div>
+<div class="space-y-1">
+<p class="font-label-mono text-label-mono text-muted-gray uppercase tracking-widest">Total Net Worth</p>
+<div class="flex items-baseline space-x-2">
+<span class="font-display-lg text-display-lg metallic-shimmer">$124,592.84</span>
+</div>
+<div class="flex items-center space-x-2 text-electric-emerald">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">trending_up</span>
+<span class="font-label-mono text-label-mono">+4.2% (+$5,102.30)</span>
+</div>
+</div>
+<div class="flex justify-between items-end mt-stack-lg">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-matte-obsidian bg-[#627EEA] flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[18px]">CurrencyEth</span>
+</div>
+<div class="w-8 h-8 rounded-full border-2 border-matte-obsidian bg-[#F7931A] flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[18px]">currency_bitcoin</span>
+</div>
+<div class="w-8 h-8 rounded-full border-2 border-matte-obsidian bg-[#26A17B] flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[18px]">attach_money</span>
+</div>
+</div>
+<p class="font-label-mono text-label-mono text-muted-gray">Secured via VanLink</p>
+</div>
+</div>
+</section>
+<!-- Quick Actions Grid -->
+<section class="grid grid-cols-4 gap-unit">
+<div class="flex flex-col items-center space-y-2 group cursor-pointer">
+<div class="w-14 h-14 rounded-2xl bg-surface-container-high flex items-center justify-center border border-border-glass group-hover:border-electric-emerald/50 group-active:scale-95 transition-all duration-200">
+<span class="material-symbols-outlined text-electric-emerald" data-icon="send">send</span>
+</div>
+<span class="font-label-mono text-label-mono text-muted-gray group-hover:text-electric-emerald">Send</span>
+</div>
+<div class="flex flex-col items-center space-y-2 group cursor-pointer">
+<div class="w-14 h-14 rounded-2xl bg-surface-container-high flex items-center justify-center border border-border-glass group-hover:border-electric-emerald/50 group-active:scale-95 transition-all duration-200">
+<span class="material-symbols-outlined text-electric-emerald" data-icon="call_received">call_received</span>
+</div>
+<span class="font-label-mono text-label-mono text-muted-gray group-hover:text-electric-emerald">Receive</span>
+</div>
+<div class="flex flex-col items-center space-y-2 group cursor-pointer">
+<div class="w-14 h-14 rounded-2xl bg-electric-emerald flex items-center justify-center shadow-[0_0_20px_rgba(0,255,136,0.2)] group-active:scale-95 transition-all duration-200">
+<span class="material-symbols-outlined text-matte-obsidian font-bold" data-icon="link" style="font-variation-settings: 'FILL' 1;">link</span>
+</div>
+<span class="font-label-mono text-label-mono text-electric-emerald font-bold">VanLink</span>
+</div>
+<div class="flex flex-col items-center space-y-2 group cursor-pointer">
+<div class="w-14 h-14 rounded-2xl bg-surface-container-high flex items-center justify-center border border-border-glass group-hover:border-electric-emerald/50 group-active:scale-95 transition-all duration-200">
+<span class="material-symbols-outlined text-electric-emerald" data-icon="account_balance_wallet">account_balance_wallet</span>
+</div>
+<span class="font-label-mono text-label-mono text-muted-gray group-hover:text-electric-emerald">Withdraw</span>
+</div>
+</section>
+<!-- Recent Activity Section -->
+<section class="space-y-stack-md">
+<div class="flex justify-between items-center">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-liquid-silver">Recent Activity</h2>
+<button class="font-label-mono text-label-mono text-electric-emerald hover:underline">View All</button>
+</div>
+<div class="space-y-stack-sm">
+<!-- Activity Entry 1 -->
+<div class="bg-surface-elevated border border-border-glass rounded-xl p-4 flex items-center justify-between group hover:bg-surface-container-high transition-colors">
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-electric-emerald" data-icon="swap_horiz">swap_horiz</span>
+</div>
+<div>
+<p class="font-body-md text-body-md text-on-surface">Swapped ETH for USDC</p>
+<p class="font-label-mono text-label-mono text-muted-gray">Uniswap V3 • 2h ago</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-label-mono text-label-mono text-on-surface">-$1,240.00</p>
+<p class="font-label-mono text-label-mono text-muted-gray">0.45 ETH</p>
+</div>
+</div>
+<!-- Activity Entry 2 -->
+<div class="bg-surface-elevated border border-border-glass rounded-xl p-4 flex items-center justify-between group hover:bg-surface-container-high transition-colors">
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-electric-emerald" data-icon="add_circle" style="font-variation-settings: 'FILL' 1;">add_circle</span>
+</div>
+<div>
+<p class="font-body-md text-body-md text-on-surface">Received via VanLink</p>
+<p class="font-label-mono text-label-mono text-muted-gray">From @alex.van • 5h ago</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-label-mono text-label-mono text-electric-emerald">+$450.00</p>
+<p class="font-label-mono text-label-mono text-muted-gray">450.00 USDC</p>
+</div>
+</div>
+<!-- Activity Entry 3 -->
+<div class="bg-surface-elevated border border-border-glass rounded-xl p-4 flex items-center justify-between group hover:bg-surface-container-high transition-colors">
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-muted-gray" data-icon="lock">lock</span>
+</div>
+<div>
+<p class="font-body-md text-body-md text-on-surface">Liquidity Staked</p>
+<p class="font-label-mono text-label-mono text-muted-gray">Aave Protocol • Yesterday</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-label-mono text-label-mono text-on-surface">-$5,000.00</p>
+<p class="font-label-mono text-label-mono text-muted-gray">5,000 USDT</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Secondary Insights / Bento style -->
+<section class="grid grid-cols-2 gap-stack-md">
+<div class="bg-surface-elevated border border-border-glass rounded-2xl p-4 space-y-2">
+<span class="material-symbols-outlined text-electric-emerald text-[20px]" data-icon="shield">shield</span>
+<p class="font-label-mono text-label-mono text-muted-gray uppercase">Health</p>
+<p class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">98%</p>
+</div>
+<div class="bg-surface-elevated border border-border-glass rounded-2xl p-4 space-y-2">
+<span class="material-symbols-outlined text-tertiary-fixed-dim text-[20px]" data-icon="bolt">bolt</span>
+<p class="font-label-mono text-label-mono text-muted-gray uppercase">Yield</p>
+<p class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">12.4%</p>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="bg-matte-obsidian/90 backdrop-blur-xl fixed bottom-0 w-full z-50 rounded-t-xl border-t border-border-glass shadow-[0_-8px_24px_rgba(0,255,136,0.05)]">
+<div class="flex justify-around items-center px-gutter py-3 w-full max-w-md mx-auto pb-safe">
+<!-- Home (Active) -->
+<a class="flex flex-col items-center justify-center text-electric-emerald space-y-unit transition-all duration-200 scale-110" href="#">
+<span class="material-symbols-outlined" data-icon="grid_view" style="font-variation-settings: 'FILL' 1;">grid_view</span>
+<span class="font-label-mono text-label-mono">Home</span>
+</a>
+<!-- Activity -->
+<a class="flex flex-col items-center justify-center text-muted-gray space-y-unit hover:text-liquid-silver transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+<span class="font-label-mono text-label-mono">Activity</span>
+</a>
+<!-- Rewards -->
+<a class="flex flex-col items-center justify-center text-muted-gray space-y-unit hover:text-liquid-silver transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="redeem">redeem</span>
+<span class="font-label-mono text-label-mono">Rewards</span>
+</a>
+<!-- Account -->
+<a class="flex flex-col items-center justify-center text-muted-gray space-y-unit hover:text-liquid-silver transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-mono text-label-mono">Account</span>
+</a>
+</div>
+</nav>
+</body></html>

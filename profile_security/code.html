@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@600;700&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #0A0A0A;
+            color: #e5e2e1;
+        }
+        .glass-card {
+            background: rgba(22, 22, 22, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-lowest": "#0e0e0e",
+                      "outline-variant": "#3b4b3d",
+                      "surface-container-low": "#1c1b1b",
+                      "electric-emerald": "#00FF88",
+                      "tertiary-fixed-dim": "#e5c364",
+                      "on-error": "#690005",
+                      "surface-variant": "#353534",
+                      "tertiary": "#fffaf7",
+                      "primary-container": "#00ff88",
+                      "liquid-silver": "#E0E0E0",
+                      "primary-fixed": "#60ff99",
+                      "error": "#ffb4ab",
+                      "background": "#131313",
+                      "inverse-primary": "#006d37",
+                      "on-primary": "#003919",
+                      "primary-fixed-dim": "#00e479",
+                      "on-primary-fixed": "#00210c",
+                      "surface-elevated": "#161616",
+                      "on-tertiary": "#3d2f00",
+                      "surface-dim": "#131313",
+                      "surface-tint": "#00e479",
+                      "matte-obsidian": "#0A0A0A",
+                      "on-primary-fixed-variant": "#005228",
+                      "surface-container-highest": "#353534",
+                      "tertiary-fixed": "#ffe08d",
+                      "surface-bright": "#3a3939",
+                      "muted-gray": "#888888",
+                      "outline": "#849585",
+                      "tertiary-container": "#ffdb79",
+                      "on-tertiary-fixed-variant": "#584400",
+                      "on-secondary-fixed-variant": "#454747",
+                      "on-secondary": "#2f3131",
+                      "secondary": "#c6c6c6",
+                      "on-primary-container": "#007139",
+                      "on-surface-variant": "#b9cbb9",
+                      "on-surface": "#e5e2e1",
+                      "border-glass": "rgba(255, 255, 255, 0.08)",
+                      "secondary-fixed-dim": "#c6c6c6",
+                      "on-secondary-container": "#b5b5b5",
+                      "inverse-on-surface": "#313030",
+                      "surface": "#131313",
+                      "primary": "#f1ffef",
+                      "inverse-surface": "#e5e2e1",
+                      "surface-container": "#201f1f",
+                      "on-secondary-fixed": "#1a1c1c",
+                      "on-tertiary-fixed": "#241a00",
+                      "on-background": "#e5e2e1",
+                      "on-error-container": "#ffdad6",
+                      "secondary-fixed": "#e2e2e2",
+                      "error-container": "#93000a",
+                      "on-tertiary-container": "#795f01",
+                      "secondary-container": "#454747",
+                      "surface-container-high": "#2a2a2a"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "stack-md": "16px",
+                      "gutter": "24px",
+                      "unit": "4px",
+                      "margin-safe": "32px",
+                      "stack-lg": "32px",
+                      "stack-sm": "8px"
+              },
+              "fontFamily": {
+                      "body-md": ["Inter"],
+                      "display-lg": ["Geist"],
+                      "body-sm": ["Inter"],
+                      "headline-lg": ["Geist"],
+                      "label-mono": ["JetBrains Mono"],
+                      "headline-lg-mobile": ["Geist"]
+              },
+              "fontSize": {
+                      "body-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                      "body-sm": ["14px", {"lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "label-mono": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-matte-obsidian min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-matte-obsidian/80 backdrop-blur-md border-b border-border-glass">
+<div class="flex items-center justify-between px-gutter h-16 w-full max-w-md mx-auto">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full border border-electric-emerald/30 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A sophisticated high-resolution close-up portrait of a professional man in a dark studio setting. The lighting is cinematic with deep shadows and a soft, electric emerald green rim light reflecting off his features. The aesthetic is ultra-modern and premium, matching a high-end fintech digital identity with absolute clarity and focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJt6JhNiEsPBVH4R0TATABEWIJzavU53d-4fwtFOmo8Wb7onKm49vObibgrvvOlO0sWUauLf-Gwcb1y5sTOVtgjftqFm5P-bIpANFh9u8oSzdoGVIpcDGBKLmX9gKBnxi-37LO29DLHl5yh7d4neKsE0LciU0aDu8Gfd9GLiWU5VnwtQ-18OGlhy_BHLHNEip5A1bLnmxNVNPtwz7gIwcSWs5URFUtyJvUcFLVBjpOHBIrT7xRnHdhSoE5sd4h_rwRHZJK0sIveBI"/>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-electric-emerald tracking-tighter">V DeFi</h1>
+</div>
+<button class="text-electric-emerald hover:text-electric-emerald transition-colors duration-200 active:scale-95 duration-150">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</div>
+</header>
+<main class="pt-24 px-gutter max-w-md mx-auto space-y-stack-lg">
+<!-- Profile Hero -->
+<section class="flex flex-col items-center justify-center space-y-stack-md pt-4">
+<div class="relative group">
+<div class="absolute -inset-1 bg-electric-emerald/20 rounded-full blur-md opacity-75"></div>
+<div class="relative w-24 h-24 rounded-full p-1 bg-gradient-to-tr from-electric-emerald to-matte-obsidian shadow-[0_0_20px_rgba(0,255,136,0.2)]">
+<div class="w-full h-full rounded-full overflow-hidden border-2 border-matte-obsidian">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a person with sharp features, set against a dark, minimalist background. A subtle, glowing emerald green ring surrounds the circular frame, evoking a sense of verified status and high-tech security. The lighting is focused and dramatic, highlighting a sophisticated and authoritative presence suitable for a wealth management platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQGOht-PXE5ujhjafz9ilFsxhiMuOnyjkVq87TtkGQtc8_G5qLWdqXC7FBsRyBPPVSvx4--j2otlBIy-NpbnZvJMI3x00zu_ON-M0_0OjrVtMsKHYxC1l3_uGlLqn-240ho_OoGtzbyzaaR4YRYZuubjCDiK7dJTHOHeUDDBMhWg-DKC_sUbsmoPOLGhycni76lhQ3_vHClnFOgmFepEXWAdpoFhWfs_QWK9VquOIlBho-IhbdEY4_tQyGDMrpJgaL1XtqH21fM-s"/>
+</div>
+</div>
+<div class="absolute bottom-1 right-1 bg-electric-emerald text-on-primary w-6 h-6 rounded-full flex items-center justify-center border-2 border-matte-obsidian shadow-lg">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<div class="text-center">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-liquid-silver">Alex Sterling</h2>
+<p class="font-label-mono text-label-mono text-muted-gray uppercase tracking-widest">Premium Member</p>
+</div>
+</section>
+<!-- Settings List -->
+<section class="space-y-stack-md">
+<!-- KYC Status -->
+<div class="glass-card rounded-xl p-stack-md flex items-center justify-between group cursor-pointer hover:bg-surface-elevated transition-colors duration-200">
+<div class="flex items-center gap-stack-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest/50 flex items-center justify-center border border-border-glass">
+<span class="material-symbols-outlined text-liquid-silver" data-icon="verified_user">verified_user</span>
+</div>
+<div>
+<h3 class="font-body-md text-body-md text-liquid-silver">KYC Status</h3>
+<p class="font-label-mono text-[10px] text-muted-gray">IDENTITY VERIFIED</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<div class="px-2 py-0.5 rounded-full bg-electric-emerald/10 border border-electric-emerald/20 flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-electric-emerald shadow-[0_0_4px_#00FF88]"></span>
+<span class="font-label-mono text-[10px] text-electric-emerald">Verified</span>
+</div>
+<span class="material-symbols-outlined text-muted-gray text-sm" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<!-- Payment Methods -->
+<div class="glass-card rounded-xl p-stack-md flex items-center justify-between group cursor-pointer hover:bg-surface-elevated transition-colors duration-200">
+<div class="flex items-center gap-stack-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest/50 flex items-center justify-center border border-border-glass">
+<span class="material-symbols-outlined text-liquid-silver" data-icon="payments">payments</span>
+</div>
+<div>
+<h3 class="font-body-md text-body-md text-liquid-silver">Payment Methods</h3>
+<p class="font-label-mono text-[10px] text-muted-gray">2 CARDS SAVED</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-muted-gray text-sm" data-icon="chevron_right">chevron_right</span>
+</div>
+<!-- Security (Biometrics) -->
+<div class="glass-card rounded-xl p-stack-md flex items-center justify-between group cursor-pointer hover:bg-surface-elevated transition-colors duration-200">
+<div class="flex items-center gap-stack-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest/50 flex items-center justify-center border border-border-glass">
+<span class="material-symbols-outlined text-liquid-silver" data-icon="fingerprint">fingerprint</span>
+</div>
+<div>
+<h3 class="font-body-md text-body-md text-liquid-silver">Security</h3>
+<p class="font-label-mono text-[10px] text-muted-gray">BIOMETRIC AUTH ENABLED</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-mono text-[10px] text-electric-emerald">High Secure</span>
+<span class="material-symbols-outlined text-muted-gray text-sm" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<!-- Linked Bank Accounts -->
+<div class="glass-card rounded-xl p-stack-md flex items-center justify-between group cursor-pointer hover:bg-surface-elevated transition-colors duration-200">
+<div class="flex items-center gap-stack-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest/50 flex items-center justify-center border border-border-glass">
+<span class="material-symbols-outlined text-liquid-silver" data-icon="account_balance">account_balance</span>
+</div>
+<div>
+<h3 class="font-body-md text-body-md text-liquid-silver">Linked Bank Accounts</h3>
+<p class="font-label-mono text-[10px] text-muted-gray">1 ACCOUNT CONNECTED</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-muted-gray text-sm" data-icon="chevron_right">chevron_right</span>
+</div>
+<!-- Support -->
+<div class="glass-card rounded-xl p-stack-md flex items-center justify-between group cursor-pointer hover:bg-surface-elevated transition-colors duration-200">
+<div class="flex items-center gap-stack-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest/50 flex items-center justify-center border border-border-glass">
+<span class="material-symbols-outlined text-liquid-silver" data-icon="support_agent">support_agent</span>
+</div>
+<div>
+<h3 class="font-body-md text-body-md text-liquid-silver">Support</h3>
+<p class="font-label-mono text-[10px] text-muted-gray">24/7 CONCIERGE</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-muted-gray text-sm" data-icon="chevron_right">chevron_right</span>
+</div>
+</section>
+<!-- Sign Out -->
+<button class="w-full py-4 rounded-xl border border-error/20 bg-error/5 flex items-center justify-center gap-2 group active:scale-95 transition-all duration-150">
+<span class="material-symbols-outlined text-error text-sm" data-icon="logout">logout</span>
+<span class="font-label-mono text-label-mono text-error uppercase tracking-widest">Sign Out</span>
+</button>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-xl bg-matte-obsidian/90 backdrop-blur-xl border-t border-border-glass shadow-[0_-8px_24px_rgba(0,255,136,0.05)]">
+<div class="flex justify-around items-center px-gutter py-3 w-full max-w-md mx-auto pb-safe">
+<!-- Home -->
+<div class="flex flex-col items-center justify-center text-muted-gray space-y-unit hover:text-liquid-silver transition-colors cursor-pointer">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+<span class="font-label-mono text-label-mono">Home</span>
+</div>
+<!-- Activity -->
+<div class="flex flex-col items-center justify-center text-muted-gray space-y-unit hover:text-liquid-silver transition-colors cursor-pointer">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+<span class="font-label-mono text-label-mono">Activity</span>
+</div>
+<!-- Rewards -->
+<div class="flex flex-col items-center justify-center text-muted-gray space-y-unit hover:text-liquid-silver transition-colors cursor-pointer">
+<span class="material-symbols-outlined" data-icon="redeem">redeem</span>
+<span class="font-label-mono text-label-mono">Rewards</span>
+</div>
+<!-- Account (Active) -->
+<div class="flex flex-col items-center justify-center text-electric-emerald space-y-unit scale-110 duration-200 ease-out cursor-pointer">
+<span class="material-symbols-outlined" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label-mono text-label-mono">Account</span>
+</div>
+</div>
+</nav>
+</body></html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&amp;family=Geist:wght@600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#0e0e0e",
+                        "outline-variant": "#3b4b3d",
+                        "surface-container-low": "#1c1b1b",
+                        "electric-emerald": "#00FF88",
+                        "tertiary-fixed-dim": "#e5c364",
+                        "on-error": "#690005",
+                        "surface-variant": "#353534",
+                        "tertiary": "#fffaf7",
+                        "primary-container": "#00ff88",
+                        "liquid-silver": "#E0E0E0",
+                        "primary-fixed": "#60ff99",
+                        "error": "#ffb4ab",
+                        "background": "#131313",
+                        "inverse-primary": "#006d37",
+                        "on-primary": "#003919",
+                        "primary-fixed-dim": "#00e479",
+                        "on-primary-fixed": "#00210c",
+                        "surface-elevated": "#161616",
+                        "on-tertiary": "#3d2f00",
+                        "surface-dim": "#131313",
+                        "surface-tint": "#00e479",
+                        "matte-obsidian": "#0A0A0A",
+                        "on-primary-fixed-variant": "#005228",
+                        "surface-container-highest": "#353534",
+                        "tertiary-fixed": "#ffe08d",
+                        "surface-bright": "#3a3939",
+                        "muted-gray": "#888888",
+                        "outline": "#849585",
+                        "tertiary-container": "#ffdb79",
+                        "on-tertiary-fixed-variant": "#584400",
+                        "on-secondary-fixed-variant": "#454747",
+                        "on-secondary": "#2f3131",
+                        "secondary": "#c6c6c6",
+                        "on-primary-container": "#007139",
+                        "on-surface-variant": "#b9cbb9",
+                        "on-surface": "#e5e2e1",
+                        "border-glass": "rgba(255, 255, 255, 0.08)",
+                        "secondary-fixed-dim": "#c6c6c6",
+                        "on-secondary-container": "#b5b5b5",
+                        "inverse-on-surface": "#313030",
+                        "surface": "#131313",
+                        "primary": "#f1ffef",
+                        "inverse-surface": "#e5e2e1",
+                        "surface-container": "#201f1f",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "on-tertiary-fixed": "#241a00",
+                        "on-background": "#e5e2e1",
+                        "on-error-container": "#ffdad6",
+                        "secondary-fixed": "#e2e2e2",
+                        "error-container": "#93000a",
+                        "on-tertiary-container": "#795f01",
+                        "secondary-container": "#454747",
+                        "surface-container-high": "#2a2a2a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "16px",
+                        "gutter": "24px",
+                        "unit": "4px",
+                        "margin-safe": "32px",
+                        "stack-lg": "32px",
+                        "stack-sm": "8px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "display-lg": ["Geist"],
+                        "body-sm": ["Inter"],
+                        "headline-lg": ["Geist"],
+                        "label-mono": ["JetBrains Mono"],
+                        "headline-lg-mobile": ["Geist"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "label-mono": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #0A0A0A;
+            margin: 0;
+            overflow: hidden;
+        }
+        .emerald-glow {
+            box-shadow: 0 0 60px 10px rgba(0, 255, 136, 0.15);
+        }
+        .loading-shimmer {
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.4), transparent);
+            background-size: 200% 100%;
+        }
+        .cinematic-vignette {
+            background: radial-gradient(circle, transparent 20%, rgba(0,0,0,0.8) 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="antialiased text-on-background">
+<!-- Splash Screen Container -->
+<main class="relative h-screen w-screen flex flex-col items-center justify-center bg-matte-obsidian overflow-hidden">
+<!-- Cinematic Depth Layers -->
+<div class="absolute inset-0 cinematic-vignette pointer-events-none"></div>
+<!-- Subtle Background Pattern / Ambient Lighting -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] opacity-10 pointer-events-none">
+<div class="w-full h-full bg-electric-emerald blur-[120px] rounded-full"></div>
+</div>
+<!-- Hero Content / Logo Anchor -->
+<div class="relative z-10 flex flex-col items-center">
+<!-- Logo with Glow -->
+<div class="relative p-8 rounded-full emerald-glow">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-electric-emerald tracking-tighter sm:font-headline-lg sm:text-headline-lg">
+                    V DeFi
+                </h1>
+<!-- Reflected Cinematic Light Highlight -->
+<div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent rounded-full pointer-events-none"></div>
+</div>
+<!-- Secondary Brand Tagline (Subtle) -->
+<p class="mt-stack-md font-label-mono text-label-mono text-muted-gray tracking-widest uppercase opacity-60">
+                Institutional Grade Custody
+            </p>
+</div>
+<!-- Footer Progress Indicator -->
+<div class="absolute bottom-12 left-1/2 -translate-x-1/2 w-48 flex flex-col items-center gap-unit">
+<!-- Progress Track -->
+<div class="w-full h-[2px] bg-white/5 overflow-hidden rounded-full">
+<!-- Active Loading State -->
+<div class="h-full w-[65%] bg-electric-emerald rounded-full relative overflow-hidden">
+<div class="absolute inset-0 loading-shimmer"></div>
+</div>
+</div>
+<!-- Status Text -->
+<span class="font-label-mono text-[10px] text-muted-gray uppercase tracking-tighter opacity-40">
+                Initializing Secure Protocol
+            </span>
+</div>
+<!-- Decorative UI Elements (Command Center Aesthetic) -->
+<div class="absolute top-8 left-8">
+<div class="flex items-center gap-unit">
+<div class="w-1 h-1 bg-electric-emerald rounded-full"></div>
+<span class="font-label-mono text-[10px] text-muted-gray/50 uppercase">v4.0.2 // encrypted</span>
+</div>
+</div>
+<div class="absolute bottom-8 right-8">
+<div class="flex items-center gap-unit">
+<span class="font-label-mono text-[10px] text-muted-gray/50 uppercase">node_status: active</span>
+<div class="w-1 h-1 bg-electric-emerald rounded-full"></div>
+</div>
+</div>
+</main>
+<!-- Shell Suppression: Splash screens are transactional/linear, so Navigation Shells are hidden per rule. -->
+</body></html>

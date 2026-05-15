@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>V DeFi | VanLink Generator</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@600;700&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-lowest": "#0e0e0e",
+                    "outline-variant": "#3b4b3d",
+                    "surface-container-low": "#1c1b1b",
+                    "electric-emerald": "#00FF88",
+                    "tertiary-fixed-dim": "#e5c364",
+                    "on-error": "#690005",
+                    "surface-variant": "#353534",
+                    "tertiary": "#fffaf7",
+                    "primary-container": "#00ff88",
+                    "liquid-silver": "#E0E0E0",
+                    "primary-fixed": "#60ff99",
+                    "error": "#ffb4ab",
+                    "background": "#131313",
+                    "inverse-primary": "#006d37",
+                    "on-primary": "#003919",
+                    "primary-fixed-dim": "#00e479",
+                    "on-primary-fixed": "#00210c",
+                    "surface-elevated": "#161616",
+                    "on-tertiary": "#3d2f00",
+                    "surface-dim": "#131313",
+                    "surface-tint": "#00e479",
+                    "matte-obsidian": "#0A0A0A",
+                    "on-primary-fixed-variant": "#005228",
+                    "surface-container-highest": "#353534",
+                    "tertiary-fixed": "#ffe08d",
+                    "surface-bright": "#3a3939",
+                    "muted-gray": "#888888",
+                    "outline": "#849585",
+                    "tertiary-container": "#ffdb79",
+                    "on-tertiary-fixed-variant": "#584400",
+                    "on-secondary-fixed-variant": "#454747",
+                    "on-secondary": "#2f3131",
+                    "secondary": "#c6c6c6",
+                    "on-primary-container": "#007139",
+                    "on-surface-variant": "#b9cbb9",
+                    "on-surface": "#e5e2e1",
+                    "border-glass": "rgba(255, 255, 255, 0.08)",
+                    "secondary-fixed-dim": "#c6c6c6",
+                    "on-secondary-container": "#b5b5b5",
+                    "inverse-on-surface": "#313030",
+                    "surface": "#131313",
+                    "primary": "#f1ffef",
+                    "inverse-surface": "#e5e2e1",
+                    "surface-container": "#201f1f",
+                    "on-secondary-fixed": "#1a1c1c",
+                    "on-tertiary-fixed": "#241a00",
+                    "on-background": "#e5e2e1",
+                    "on-error-container": "#ffdad6",
+                    "secondary-fixed": "#e2e2e2",
+                    "error-container": "#93000a",
+                    "on-tertiary-container": "#795f01",
+                    "secondary-container": "#454747",
+                    "surface-container-high": "#2a2a2a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-md": "16px",
+                    "gutter": "24px",
+                    "unit": "4px",
+                    "margin-safe": "32px",
+                    "stack-lg": "32px",
+                    "stack-sm": "8px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "display-lg": ["Geist"],
+                    "body-sm": ["Inter"],
+                    "headline-lg": ["Geist"],
+                    "label-mono": ["JetBrains Mono"],
+                    "headline-lg-mobile": ["Geist"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "label-mono": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .emerald-glow-focus:focus-within {
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.15);
+            border-color: #00FF88;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-matte-obsidian text-on-surface font-body-md selection:bg-electric-emerald selection:text-matte-obsidian min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-matte-obsidian/80 backdrop-blur-md border-b border-border-glass">
+<div class="flex items-center justify-between px-gutter h-16 w-full max-w-md mx-auto">
+<div class="flex items-center gap-stack-sm">
+<span class="font-headline-lg-mobile text-electric-emerald tracking-tighter">V DeFi</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="material-symbols-outlined text-electric-emerald" data-icon="notifications">notifications</div>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-border-glass">
+<img alt="User profile" data-alt="A professional high-fidelity digital avatar of a young entrepreneur in a sleek dark turtleneck. The lighting is moody and cinematic with green rim lighting that matches the Electric Emerald theme. The background is a blurred dark office environment with abstract neon financial data displays." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpgOUGq18Ec2jDKwdHMKHsyvPYhFpHhjOLGXAzcPoSpsiRN6AZRjRq8Z5GcxBFPc9sUA2bo5XoWlGOCSsuO1cPrqjeN7JgnHsgZyvp1Pf9s9gYoHuLvvKNlDnq48YhhS4fKWocxuDXG75S5fOVDhK7g3sVhwoOtBbopfaM5NkMOtf_PyF7FvUzXiQHOXSAAQfxWNo4Sz2ibVMTEdr4bcXnXabHDJyOLHIPep7Y6f9Tn-p7WlSQ3Ewdgb9h4vDSWMqRLo93M7HaUV8"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="flex-grow pt-24 pb-32 px-gutter max-w-md mx-auto w-full">
+<!-- Header Section -->
+<div class="mb-stack-lg">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-white mb-1">VanLink Generator</h1>
+<p class="font-body-sm text-muted-gray">Create a customized, secure payment request link instantly.</p>
+</div>
+<!-- Input Section: Bento-inspired layout -->
+<div class="space-y-stack-md">
+<!-- Amount Card -->
+<div class="glass-panel rounded-xl p-stack-md emerald-glow-focus transition-all duration-300">
+<label class="font-label-mono text-label-mono text-muted-gray block mb-stack-sm">REQUEST AMOUNT</label>
+<div class="flex items-baseline gap-2">
+<span class="font-headline-lg text-electric-emerald">USDC</span>
+<input class="bg-transparent border-none text-white font-display-lg w-full focus:ring-0 p-0 placeholder:text-surface-container-highest" placeholder="0.00" type="number"/>
+</div>
+<div class="mt-2 flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-electric-emerald shadow-[0_0_8px_#00FF88]"></span>
+<span class="font-label-mono text-label-mono text-muted-gray">EST. FEE: 0.05%</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-stack-md">
+<!-- Country Selector -->
+<div class="glass-panel rounded-xl p-stack-md">
+<label class="font-label-mono text-label-mono text-muted-gray block mb-stack-sm">RECIPIENT ZONE</label>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-liquid-silver" data-icon="public">public</span>
+<span class="font-body-md text-white">Global</span>
+</div>
+<span class="material-symbols-outlined text-muted-gray text-sm" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+<!-- Link Privacy -->
+<div class="glass-panel rounded-xl p-stack-md">
+<label class="font-label-mono text-label-mono text-muted-gray block mb-stack-sm">VISIBILITY</label>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-electric-emerald" data-icon="lock" style="font-variation-settings: 'FILL' 1;">lock</span>
+<span class="font-body-md text-white">Private</span>
+</div>
+<span class="material-symbols-outlined text-muted-gray text-sm" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Expiration Settings -->
+<div class="glass-panel rounded-xl p-stack-md">
+<label class="font-label-mono text-label-mono text-muted-gray block mb-stack-sm">EXPIRATION WINDOW</label>
+<div class="flex gap-2">
+<button class="flex-1 py-2 rounded-lg border border-border-glass bg-surface-elevated text-white font-label-mono text-label-mono hover:border-electric-emerald transition-colors">1H</button>
+<button class="flex-1 py-2 rounded-lg border border-electric-emerald bg-electric-emerald/10 text-electric-emerald font-label-mono text-label-mono">24H</button>
+<button class="flex-1 py-2 rounded-lg border border-border-glass bg-surface-elevated text-white font-label-mono text-label-mono hover:border-electric-emerald transition-colors">1W</button>
+<button class="flex-1 py-2 rounded-lg border border-border-glass bg-surface-elevated text-white font-label-mono text-label-mono hover:border-electric-emerald transition-colors">NO EXP</button>
+</div>
+</div>
+<!-- Visual Asset / Card Style -->
+<div class="relative overflow-hidden rounded-xl h-32 border border-border-glass">
+<img class="w-full h-full object-cover opacity-40" data-alt="A highly detailed close-up of a futuristic cryptographic blockchain interface. Luminescent green data streams flow across a dark obsidian surface with microchip-like pathways. The aesthetic is industrial yet luxurious, with sharp geometric shapes and a deep depth of field highlighting the metallic textures and electric emerald light pulses." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAp6f3euH011ofAvJcZkxyDAmZDBGgovkibX-L0OfV1BSLlR-XL7yQ6XLwiByiTnT6ElyOAbP3xJUZS1nkAmBt7_LQR5bjsLi1c-TcJufRzerQd4JvdDHqWlBKmkd_4nP3wfHbdm_LzdbR-C71-MDZEVT3n3VS8obxElCQURJVpsuDd_jvpCs491IBNU9fYtHiG-3gpDdvbr6C2OrQI5f7vtGwCNFy4ArTnXf0hNhffHiKsfG0xF8VTxi7tk4RQD4n6CF_ZDib6FWQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-matte-obsidian to-transparent"></div>
+<div class="absolute bottom-4 left-4 right-4 flex justify-between items-end">
+<div>
+<p class="font-label-mono text-[10px] text-muted-gray">SECURE NETWORK</p>
+<p class="font-label-mono text-label-mono text-white">V-PROTOCOL V2.4</p>
+</div>
+<span class="material-symbols-outlined text-electric-emerald text-3xl" data-icon="verified_user" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+</div>
+</div>
+<!-- Primary Action -->
+<button class="w-full py-4 rounded-xl bg-electric-emerald text-on-primary font-headline-lg-mobile font-bold hover:shadow-[0_0_30px_rgba(0,255,136,0.3)] active:scale-[0.98] transition-all duration-200 mt-stack-lg">
+                Generate VanLink
+            </button>
+<p class="text-center font-label-mono text-label-mono text-muted-gray pt-2">POWERED BY V DEFI SECURE ENGINE</p>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-xl bg-matte-obsidian/90 backdrop-blur-xl border-t border-border-glass shadow-[0_-8px_24px_rgba(0,255,136,0.05)]">
+<div class="flex justify-around items-center px-gutter py-3 w-full max-w-md mx-auto pb-safe">
+<div class="flex flex-col items-center justify-center text-muted-gray space-y-unit hover:text-liquid-silver transition-colors cursor-pointer">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+<span class="font-label-mono text-label-mono">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-electric-emerald space-y-unit cursor-pointer scale-110">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+<span class="font-label-mono text-label-mono">Activity</span>
+</div>
+<div class="flex flex-col items-center justify-center text-muted-gray space-y-unit hover:text-liquid-silver transition-colors cursor-pointer">
+<span class="material-symbols-outlined" data-icon="redeem">redeem</span>
+<span class="font-label-mono text-label-mono">Rewards</span>
+</div>
+<div class="flex flex-col items-center justify-center text-muted-gray space-y-unit hover:text-liquid-silver transition-colors cursor-pointer">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-mono text-label-mono">Account</span>
+</div>
+</div>
+</nav>
+</body></html>
