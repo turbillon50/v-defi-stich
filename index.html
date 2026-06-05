@@ -258,7 +258,7 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
         <p style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#888888;margin-bottom:4px">Equivalente en USDC 2,458.75</p>
         <div class="flex items-center gap-2" style="color:#00FF88">
           <span class="material-symbols-outlined" style="font-size:14px;font-variation-settings:'FILL' 1">trending_up</span>
-          <span style="font-family:'JetBrains Mono',monospace;font-size:12px">+4.2% (+$98.30)</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px">+4.2% (+$98.30) · últimas 24h</span>
         </div>
         <div class="flex justify-between items-end" style="margin-top:20px">
           <div class="flex" style="gap:-8px">
@@ -339,6 +339,61 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
             </div>
           </div>
           <p style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#00FF88">+300.00 USDC</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Crypto Portfolio -->
+    <section style="margin-bottom:24px">
+      <div class="flex items-center justify-between" style="margin-bottom:12px">
+        <h2 style="font-family:'Geist',sans-serif;font-size:18px;font-weight:700;color:#E0E0E0">Portafolio</h2>
+        <button onclick="navigate('activity')" style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#00FF88;background:none;border:none;cursor:pointer">Ver todo</button>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div class="glass-card rounded-xl p-4 flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div style="width:40px;height:40px;border-radius:50%;background:#627EEA;display:flex;align-items:center;justify-content:center">
+              <span style="font-size:16px;color:white;font-weight:700">Ξ</span>
+            </div>
+            <div>
+              <p style="font-family:'Inter',sans-serif;font-size:15px;color:#e5e2e1;font-weight:500">Ethereum</p>
+              <p style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#888888">0.45 ETH</p>
+            </div>
+          </div>
+          <div style="text-align:right">
+            <p style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#e5e2e1">$1,240.00</p>
+            <p style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#00FF88">+2.8%</p>
+          </div>
+        </div>
+        <div class="glass-card rounded-xl p-4 flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div style="width:40px;height:40px;border-radius:50%;background:#F7931A;display:flex;align-items:center;justify-content:center">
+              <span style="font-size:16px;color:white;font-weight:700">₿</span>
+            </div>
+            <div>
+              <p style="font-family:'Inter',sans-serif;font-size:15px;color:#e5e2e1;font-weight:500">Bitcoin</p>
+              <p style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#888888">0.015 BTC</p>
+            </div>
+          </div>
+          <div style="text-align:right">
+            <p style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#e5e2e1">$968.75</p>
+            <p style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#00FF88">+5.1%</p>
+          </div>
+        </div>
+        <div class="glass-card rounded-xl p-4 flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div style="width:40px;height:40px;border-radius:50%;background:#26A17B;display:flex;align-items:center;justify-content:center">
+              <span style="font-size:13px;color:white;font-weight:700">USDC</span>
+            </div>
+            <div>
+              <p style="font-family:'Inter',sans-serif;font-size:15px;color:#e5e2e1;font-weight:500">USD Coin</p>
+              <p style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#888888">250.00 USDC</p>
+            </div>
+          </div>
+          <div style="text-align:right">
+            <p style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#e5e2e1">$250.00</p>
+            <p style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#888888">Estable</p>
+          </div>
         </div>
       </div>
     </section>
@@ -963,6 +1018,18 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
         </div>
         <span class="material-symbols-outlined" style="color:#888888;font-size:18px">chevron_right</span>
       </div>
+      <div class="glass-card rounded-xl p-4 flex items-center justify-between" style="cursor:pointer" onclick="navigate('ecosystem')">
+        <div class="flex items-center gap-4">
+          <div style="width:40px;height:40px;border-radius:10px;background:rgba(53,53,52,0.5);border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center">
+            <span class="material-symbols-outlined" style="color:#00FF88">hub</span>
+          </div>
+          <div>
+            <h3 style="font-family:'Inter',sans-serif;font-size:15px;color:#E0E0E0;font-weight:500">Ecosistema V DeFi</h3>
+            <p style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#888888;text-transform:uppercase">Protocolo · v4.0.2</p>
+          </div>
+        </div>
+        <span class="material-symbols-outlined" style="color:#888888;font-size:18px">chevron_right</span>
+      </div>
     </section>
     <!-- Sign out -->
     <button onclick="signOut()" style="width:100%;padding:14px;border-radius:12px;border:1px solid rgba(255,180,171,0.2);background:rgba(255,180,171,0.05);display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;margin-bottom:16px">
@@ -978,6 +1045,92 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
       <button class="nav-item active" onclick="navigate('account')"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">person</span><span class="label">Perfil</span></button>
     </div>
   </nav>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     ECOSYSTEM / ABOUT
+═══════════════════════════════════════════ -->
+<div id="screen-ecosystem" class="screen" style="background:#0A0A0A">
+  <div class="top-bar">
+    <div class="flex items-center justify-between px-6 h-16">
+      <button onclick="navigate('account')" style="background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:8px;color:#888888">
+        <span class="material-symbols-outlined">arrow_back</span>
+        <span style="font-family:'Geist',sans-serif;font-size:22px;font-weight:700;color:#00FF88;letter-spacing:-0.04em">V DeFi</span>
+      </button>
+    </div>
+  </div>
+  <div class="scroll-content px-6">
+    <!-- Hero -->
+    <div style="text-align:center;padding:24px 0 32px;position:relative">
+      <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:200px;height:200px;background:#00FF88;opacity:0.04;filter:blur(80px);border-radius:50%;pointer-events:none"></div>
+      <div class="emerald-glow" style="width:72px;height:72px;border-radius:20px;background:rgba(0,255,136,0.08);border:1px solid rgba(0,255,136,0.2);display:flex;align-items:center;justify-content:center;margin:0 auto 16px">
+        <span style="font-family:'Geist',sans-serif;font-size:22px;font-weight:800;color:#00FF88">V</span>
+      </div>
+      <h1 style="font-family:'Geist',sans-serif;font-size:28px;font-weight:800;color:#e5e2e1;margin-bottom:8px;letter-spacing:-0.03em">Ecosistema <span style="color:#00FF88">V DeFi</span></h1>
+      <p style="font-family:'Inter',sans-serif;font-size:14px;color:#888888;line-height:1.6;max-width:280px;margin:0 auto">Infraestructura financiera de grado institucional para el mundo descentralizado.</p>
+    </div>
+
+    <!-- Pillars -->
+    <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:24px">
+      <div class="glass-card rounded-xl p-5">
+        <div class="flex items-center gap-4 mb-3">
+          <div style="width:44px;height:44px;border-radius:12px;background:rgba(0,255,136,0.08);border:1px solid rgba(0,255,136,0.15);display:flex;align-items:center;justify-content:center">
+            <span class="material-symbols-outlined" style="color:#00FF88;font-variation-settings:'FILL' 1">link</span>
+          </div>
+          <h3 style="font-family:'Geist',sans-serif;font-size:17px;font-weight:700;color:#e5e2e1">VanLink Protocol</h3>
+        </div>
+        <p style="font-family:'Inter',sans-serif;font-size:13px;color:#888888;line-height:1.6">Links de pago inteligentes con liquidación instantánea. Sin fronteras, sin intermediarios, sin fricción.</p>
+      </div>
+      <div class="glass-card rounded-xl p-5">
+        <div class="flex items-center gap-4 mb-3">
+          <div style="width:44px;height:44px;border-radius:12px;background:rgba(0,255,136,0.08);border:1px solid rgba(0,255,136,0.15);display:flex;align-items:center;justify-content:center">
+            <span class="material-symbols-outlined" style="color:#00FF88;font-variation-settings:'FILL' 1">shield</span>
+          </div>
+          <h3 style="font-family:'Geist',sans-serif;font-size:17px;font-weight:700;color:#e5e2e1">Custodia Institucional</h3>
+        </div>
+        <p style="font-family:'Inter',sans-serif;font-size:13px;color:#888888;line-height:1.6">Encriptación de grado militar. Multi-firma con recuperación social. Tus claves, tu control total.</p>
+      </div>
+      <div class="glass-card rounded-xl p-5">
+        <div class="flex items-center gap-4 mb-3">
+          <div style="width:44px;height:44px;border-radius:12px;background:rgba(229,195,100,0.08);border:1px solid rgba(229,195,100,0.15);display:flex;align-items:center;justify-content:center">
+            <span class="material-symbols-outlined" style="color:#e5c364">bolt</span>
+          </div>
+          <h3 style="font-family:'Geist',sans-serif;font-size:17px;font-weight:700;color:#e5e2e1">Rendimiento DeFi</h3>
+        </div>
+        <p style="font-family:'Inter',sans-serif;font-size:13px;color:#888888;line-height:1.6">Liquidez automatizada en pools auditados. Yields optimizados sin gestión manual.</p>
+      </div>
+      <div class="glass-card rounded-xl p-5">
+        <div class="flex items-center gap-4 mb-3">
+          <div style="width:44px;height:44px;border-radius:12px;background:rgba(0,255,136,0.08);border:1px solid rgba(0,255,136,0.15);display:flex;align-items:center;justify-content:center">
+            <span class="material-symbols-outlined" style="color:#00FF88;font-variation-settings:'FILL' 1">public</span>
+          </div>
+          <h3 style="font-family:'Geist',sans-serif;font-size:17px;font-weight:700;color:#e5e2e1">50+ Países</h3>
+        </div>
+        <p style="font-family:'Inter',sans-serif;font-size:13px;color:#888888;line-height:1.6">Liquidaciones cross-border en tiempo real. Cobertura en Latinoamérica, Europa y Norteamérica.</p>
+      </div>
+    </div>
+
+    <!-- Stats row -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:24px">
+      <div class="glass-card rounded-xl p-4" style="text-align:center">
+        <p style="font-family:'Geist',sans-serif;font-size:20px;font-weight:800;color:#00FF88;margin-bottom:4px">$2.4B</p>
+        <p style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#888888;text-transform:uppercase">Volumen</p>
+      </div>
+      <div class="glass-card rounded-xl p-4" style="text-align:center">
+        <p style="font-family:'Geist',sans-serif;font-size:20px;font-weight:800;color:#e5e2e1;margin-bottom:4px">180K</p>
+        <p style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#888888;text-transform:uppercase">Usuarios</p>
+      </div>
+      <div class="glass-card rounded-xl p-4" style="text-align:center">
+        <p style="font-family:'Geist',sans-serif;font-size:20px;font-weight:800;color:#e5c364;margin-bottom:4px">0.05%</p>
+        <p style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#888888;text-transform:uppercase">Fee</p>
+      </div>
+    </div>
+
+    <!-- Version -->
+    <div style="text-align:center;padding-bottom:24px">
+      <p style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#888888;opacity:0.4;text-transform:uppercase;letter-spacing:0.1em">V DeFi v4.0.2 · Powered by V-Protocol</p>
+    </div>
+  </div>
 </div>
 
 <!-- ═══════════════════════════════════════════
@@ -1001,241 +1154,4 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
 let currentScreen = 'splash';
 let onboardingIndex = 0;
 let deferredInstall = null;
-let selectedCountry = 'mexico';
-let selectedDelivery = 'vanlink';
-
-const rates = { mexico: 17.45, usa: 1, europe: 0.92 };
-const currencies = { mexico: 'MXN', usa: 'USD', europe: 'EUR' };
-const rateLabels = { mexico: '1 USDC = 17.45 MXN', usa: '1 USDC = 1.00 USD', europe: '1 USDC = 0.92 EUR' };
-
-const transactions = [
-  {type:'in', icon:'link', label:'VanLink recibido', sub:'Hoy, 10:45 AM', amount:'+120.00 USDC', color:'#00FF88'},
-  {type:'out', icon:'send', label:'Enviado a Carlos', sub:'Ayer, 4:30 PM', amount:'-85.00 USDC', color:'#ffb4ab'},
-  {type:'in', icon:'credit_card', label:'Compra con tarjeta', sub:'13 May, 9:15 AM', amount:'+300.00 USDC', color:'#00FF88'},
-  {type:'vanlink', icon:'link', label:'VanLink a María', sub:'12 May, 3:00 PM', amount:'-50.00 USDC', color:'#ffb4ab'},
-  {type:'in', icon:'call_received', label:'Transferencia recibida', sub:'10 May, 11:20 AM', amount:'+250.00 USDC', color:'#00FF88'},
-  {type:'out', icon:'account_balance', label:'Retiro banco BBVA', sub:'9 May, 8:00 AM', amount:'-150.00 USDC', color:'#ffb4ab'},
-  {type:'vanlink', icon:'link', label:'VanLink recibido', sub:'8 May, 6:45 PM', amount:'+75.00 USDC', color:'#00FF88'},
-];
-
-// ─── ROUTER ──────────────────────────────────
-function navigate(screen) {
-  document.querySelectorAll('.screen').forEach(s => {
-    s.classList.remove('active');
-    s.classList.remove('fade-in');
-  });
-  const el = document.getElementById('screen-' + screen);
-  if (!el) return;
-  el.classList.add('active', 'fade-in');
-  currentScreen = screen;
-  window.scrollTo(0, 0);
-  if (screen === 'activity') renderActivity('all');
-}
-
-// ─── SPLASH ──────────────────────────────────
-window.addEventListener('load', () => {
-  const bar = document.getElementById('splash-bar');
-  requestAnimationFrame(() => { bar.style.width = '100%'; });
-  setTimeout(() => {
-    const visited = localStorage.getItem('vdefi-visited');
-    navigate(visited ? 'login' : 'onboarding');
-    localStorage.setItem('vdefi-visited', '1');
-  }, 2200);
-});
-
-// ─── ONBOARDING ──────────────────────────────
-function onboardingNext() {
-  const slides = document.querySelectorAll('.onboarding-slide');
-  const dots = document.querySelectorAll('.onboarding-dot');
-  if (onboardingIndex < slides.length - 1) {
-    slides[onboardingIndex].style.display = 'none';
-    onboardingIndex++;
-    slides[onboardingIndex].style.display = 'block';
-    dots.forEach((d, i) => {
-      d.classList.toggle('active', i === onboardingIndex);
-      d.style.width = i === onboardingIndex ? '24px' : '8px';
-    });
-    if (onboardingIndex === slides.length - 1) {
-      document.getElementById('onboarding-next-btn').textContent = 'Comenzar';
-    }
-  } else {
-    navigate('login');
-  }
-}
-
-// ─── LOGIN ───────────────────────────────────
-function loginWith(method) {
-  localStorage.setItem('vdefi-auth', method);
-  navigate('home');
-}
-
-// ─── SEND CALC ───────────────────────────────
-function updateSendCalc() {
-  const amt = parseFloat(document.getElementById('send-amount').value) || 0;
-  const fee = (amt * 0.01).toFixed(2);
-  const recv = ((amt - amt * 0.01) * rates[selectedCountry]).toFixed(2);
-  document.getElementById('send-fee').textContent = fee + ' USDC';
-  document.getElementById('send-recv').textContent = recv.replace(/\B(?=(\d{3})+(?!\d))/g, ',') + ' ' + currencies[selectedCountry];
-  document.getElementById('send-rate').textContent = rateLabels[selectedCountry];
-}
-
-function selectCountry(c) {
-  selectedCountry = c;
-  ['mexico','usa','europe','latam'].forEach(id => {
-    const el = document.getElementById('country-' + id);
-    if (el) el.style.border = id === c ? '1px solid rgba(0,255,136,0.35)' : '1px solid rgba(255,255,255,0.08)';
-  });
-  updateSendCalc();
-}
-
-function selectDelivery(d) {
-  selectedDelivery = d;
-  const vl = document.getElementById('delivery-vanlink');
-  const bk = document.getElementById('delivery-bank');
-  const rvl = document.getElementById('radio-vanlink');
-  const rbk = document.getElementById('radio-bank');
-  if (d === 'vanlink') {
-    vl.style.border = '1px solid rgba(0,255,136,0.25)'; vl.style.opacity = '1';
-    bk.style.border = '1px solid rgba(255,255,255,0.08)'; bk.style.opacity = '0.7';
-    rvl.innerHTML = '<div style="width:10px;height:10px;border-radius:50%;background:#00FF88"></div>';
-    rvl.style.borderColor = '#00FF88';
-    rbk.innerHTML = '';
-    rbk.style.borderColor = 'rgba(255,255,255,0.2)';
-  } else {
-    bk.style.border = '1px solid rgba(0,255,136,0.25)'; bk.style.opacity = '1';
-    vl.style.border = '1px solid rgba(255,255,255,0.08)'; vl.style.opacity = '0.7';
-    rbk.innerHTML = '<div style="width:10px;height:10px;border-radius:50%;background:#00FF88"></div>';
-    rbk.style.borderColor = '#00FF88';
-    rvl.innerHTML = '';
-    rvl.style.borderColor = 'rgba(255,255,255,0.2)';
-  }
-}
-
-// ─── VANLINK ─────────────────────────────────
-function updateVanlinkFee() {
-  const amt = parseFloat(document.getElementById('vanlink-amount').value) || 0;
-  document.getElementById('vanlink-fee').textContent = (amt * 0.0005).toFixed(4) + ' USDC';
-}
-
-function setExpiry(btn, val) {
-  document.querySelectorAll('#screen-vanlink button[onclick^="setExpiry"]').forEach(b => {
-    b.style.border = '1px solid rgba(255,255,255,0.08)';
-    b.style.background = 'none';
-    b.style.color = '#e5e2e1';
-  });
-  btn.style.border = '1px solid #00FF88';
-  btn.style.background = 'rgba(0,255,136,0.08)';
-  btn.style.color = '#00FF88';
-}
-
-function generateVanlink() {
-  const amt = document.getElementById('vanlink-amount').value || '0';
-  const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
-  const id = Array.from({length: 7}, () => chars[Math.floor(Math.random() * chars.length)]).join('');
-  document.getElementById('generated-link').textContent = 'vdefi.com/vl/' + id;
-  navigate('send-confirm');
-}
-
-function generateReferralLink() {
-  const id = Math.random().toString(36).substr(2, 8);
-  if (navigator.share) {
-    navigator.share({ title: 'V DeFi', text: 'Únete a V DeFi y gana $25 USDC', url: 'https://vdefi.com/ref/' + id });
-  } else {
-    navigator.clipboard.writeText('https://vdefi.com/ref/' + id);
-    showToast('Link copiado al portapapeles');
-  }
-}
-
-// ─── ACTIVITY ────────────────────────────────
-function renderActivity(filter) {
-  const list = document.getElementById('activity-list');
-  if (!list) return;
-  const filtered = filter === 'all' ? transactions : transactions.filter(t => t.type === filter);
-  list.innerHTML = filtered.map(t => `
-    <div class="glass-card rounded-xl p-4" style="display:flex;align-items:center;justify-content:space-between;cursor:pointer">
-      <div style="display:flex;align-items:center;gap:14px">
-        <div style="width:40px;height:40px;border-radius:50%;background:#201f1f;display:flex;align-items:center;justify-content:center">
-          <span class="material-symbols-outlined" style="color:#00FF88;font-size:20px">${t.icon}</span>
-        </div>
-        <div>
-          <p style="font-family:'Inter',sans-serif;font-size:15px;color:#e5e2e1;font-weight:500">${t.label}</p>
-          <p style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#888888">${t.sub}</p>
-        </div>
-      </div>
-      <p style="font-family:'JetBrains Mono',monospace;font-size:13px;color:${t.color}">${t.amount}</p>
-    </div>
-  `).join('');
-}
-
-function filterActivity(type, btn) {
-  document.querySelectorAll('#screen-activity button[onclick^="filterActivity"]').forEach(b => {
-    b.style.background = 'rgba(255,255,255,0.05)';
-    b.style.color = '#888888';
-    b.style.border = '1px solid rgba(255,255,255,0.08)';
-  });
-  btn.style.background = '#00FF88';
-  btn.style.color = '#003919';
-  btn.style.border = 'none';
-  renderActivity(type);
-}
-
-// ─── MISC ─────────────────────────────────────
-function copyLink() {
-  const link = document.getElementById('generated-link').textContent;
-  navigator.clipboard.writeText(link).then(() => showToast('¡Link copiado!')).catch(() => showToast('Copia: ' + link));
-}
-
-function share(platform) {
-  const link = document.getElementById('generated-link').textContent;
-  const text = '¡Cóbrame a través de V DeFi! ' + link;
-  if (platform === 'whatsapp') window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank');
-  else if (platform === 'telegram') window.open('https://t.me/share/url?url=' + encodeURIComponent(link) + '&text=' + encodeURIComponent('¡Pago con V DeFi!'), '_blank');
-  else if (platform === 'email') window.open('mailto:?subject=Pago V DeFi&body=' + encodeURIComponent(text));
-}
-
-function showNotifications() { showToast('Sin notificaciones nuevas'); }
-
-function signOut() {
-  if (confirm('¿Cerrar sesión?')) {
-    localStorage.removeItem('vdefi-auth');
-    navigate('login');
-  }
-}
-
-function showToast(msg) {
-  const t = document.createElement('div');
-  t.style.cssText = 'position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:#161616;border:1px solid rgba(0,255,136,0.25);border-radius:10px;padding:10px 20px;font-family:JetBrains Mono,monospace;font-size:12px;color:#00FF88;z-index:999;white-space:nowrap;box-shadow:0 4px 20px rgba(0,0,0,0.4)';
-  t.textContent = msg;
-  document.body.appendChild(t);
-  setTimeout(() => t.remove(), 2500);
-}
-
-// ─── PWA INSTALL ─────────────────────────────
-window.addEventListener('beforeinstallprompt', e => {
-  e.preventDefault();
-  deferredInstall = e;
-  const banner = document.getElementById('install-banner');
-  banner.style.display = 'block';
-});
-
-function installApp() {
-  if (deferredInstall) {
-    deferredInstall.prompt();
-    deferredInstall.userChoice.then(() => { deferredInstall = null; dismissInstall(); });
-  }
-}
-
-function dismissInstall() {
-  document.getElementById('install-banner').style.display = 'none';
-}
-
-// ─── SERVICE WORKER ──────────────────────────
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js').catch(() => {});
-}
-
-// ─── INIT SEND CALC ──────────────────────────
-document.addEventListener('DOMContentLoaded', updateSendCalc);
-</script>
-</body>
-</html>
+let selectedCo
